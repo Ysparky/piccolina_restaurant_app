@@ -29,7 +29,7 @@ class _ProfilePageState extends State<ProfilePage> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         elevation: 0.5,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.redAccent),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
