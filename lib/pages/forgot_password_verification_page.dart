@@ -2,6 +2,7 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:piccolina_restaurant_app/common/theme_helper.dart';
 import 'package:otp_text_field/otp_field.dart';
@@ -28,34 +29,49 @@ class _ForgotPasswordVerificationPageState
     double _headerHeight = 300;
 
     return Scaffold(
-        backgroundColor: HexColor("#ff3333"),
+        backgroundColor: Colors.white,
         body: Container(
-          decoration: new BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                HexColor("#ff6666"),
-                HexColor("#ff6666"),
-                HexColor("#ff3333"),
-                HexColor("#ff3333")
-              ],
-                  stops: [
-                0.5,
-                0.5,
-                0.8,
-                0.8
-              ],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter)),
+          // decoration: new BoxDecoration(
+          //     gradient: LinearGradient(
+          //         colors: [
+          //       HexColor("#ff6666"),
+          //       HexColor("#ff6666"),
+          //       HexColor("#ff3333"),
+          //       HexColor("#ff3333")
+          //     ],
+          //         stops: [
+          //       0.5,
+          //       0.5,
+          //       0.8,
+          //       0.8
+          //     ],
+          //         begin: FractionalOffset.topCenter,
+          //         end: FractionalOffset.bottomCenter)
+          //         ),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
                   height: _headerHeight,
-                  child: HeaderWidget(
-                      _headerHeight, true, Icons.privacy_tip_outlined),
+                  child: Stack(
+                    children: [
+                      HeaderWidget(_headerHeight, true, Icons.login_rounded),
+                      Positioned(
+                        left: 40.0,
+                        top: 50.0,
+                        child: SvgPicture.asset(
+                          'assets/icons/logo-piccolina.svg',
+                          height: 100.0,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
+                      //let's create a common header widget
+                    ],
+                  ),
                 ),
                 SafeArea(
                   child: Container(
+                    color: Colors.white,
                     margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: Column(
@@ -72,8 +88,9 @@ class _ForgotPasswordVerificationPageState
                                 'Verificacion',
                                 style: TextStyle(
                                     fontSize: 35,
+                                    fontFamily: "Poppins",
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                    color: Colors.black),
                                 // textAlign: TextAlign.center,
                               ),
                               SizedBox(
@@ -83,14 +100,15 @@ class _ForgotPasswordVerificationPageState
                                 'Ingresa el codigo de verificacion que acabamos de enviar a tu correo',
                                 style: TextStyle(
                                     // fontSize: 20,
+                                    fontFamily: "Poppins",
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                    color: Colors.black),
                                 // textAlign: TextAlign.center,
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(height: 40.0),
+                        SizedBox(height: 10.0),
                         Form(
                           key: _formKey,
                           child: Column(
@@ -98,9 +116,9 @@ class _ForgotPasswordVerificationPageState
                               OTPTextField(
                                 length: 4,
                                 width: 300,
-                                fieldWidth: 50,
+                                fieldWidth: 40,
                                 style: TextStyle(
-                                    fontSize: 80, color: Colors.white),
+                                    fontSize: 40, color: Colors.black),
                                 textFieldAlignment:
                                     MainAxisAlignment.spaceAround,
                                 fieldStyle: FieldStyle.underline,
@@ -110,14 +128,15 @@ class _ForgotPasswordVerificationPageState
                                   });
                                 },
                               ),
-                              SizedBox(height: 50.0),
+                              SizedBox(height: 30.0),
                               Text.rich(
                                 TextSpan(
                                   children: [
                                     TextSpan(
                                       text: "Si no recibiste el codigo! ",
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        fontFamily: "Poppins",
+                                        color: Colors.black,
                                       ),
                                     ),
                                     TextSpan(
@@ -157,6 +176,7 @@ class _ForgotPasswordVerificationPageState
                                       "Verificar".toUpperCase(),
                                       style: TextStyle(
                                         fontSize: 20,
+                                        fontFamily: "Poppins",
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),

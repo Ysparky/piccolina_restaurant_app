@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:piccolina_restaurant_app/common/theme_helper.dart';
 
@@ -22,39 +23,54 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     double _headerHeight = 300;
     return Scaffold(
-        backgroundColor: HexColor("#ff3333"),
+        backgroundColor: Colors.white,
         body: Container(
-          decoration: new BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                HexColor("#ff6666"),
-                HexColor("#ff6666"),
-                HexColor("#ff3333"),
-                HexColor("#ff3333")
-              ],
-                  stops: [
-                0.5,
-                0.5,
-                0.8,
-                0.8
-              ],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter)),
+          // decoration: new BoxDecoration(
+          //     gradient: LinearGradient(
+          //         colors: [
+          //       HexColor("#ff6666"),
+          //       HexColor("#ff6666"),
+          //       HexColor("#ff3333"),
+          //       HexColor("#ff3333")
+          //     ],
+          //         stops: [
+          //       0.5,
+          //       0.5,
+          //       0.8,
+          //       0.8
+          //     ],
+          //         begin: FractionalOffset.topCenter,
+          //         end: FractionalOffset.bottomCenter)),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
                   height: _headerHeight,
-                  child:
-                      HeaderWidget(_headerHeight, true, Icons.password_rounded),
+                  child: Stack(
+                    children: [
+                      HeaderWidget(_headerHeight, true, Icons.login_rounded),
+                      Positioned(
+                        left: 40.0,
+                        top: 50.0,
+                        child: SvgPicture.asset(
+                          'assets/icons/logo-piccolina.svg',
+                          height: 100.0,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
+                      //let's create a common header widget
+                    ],
+                  ),
                 ),
                 SafeArea(
                   child: Container(
+                    color: Colors.white,
                     margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: Column(
                       children: [
                         Container(
+                          color: Colors.white,
                           alignment: Alignment.topLeft,
                           margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                           child: Column(
@@ -65,19 +81,21 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 'Olvidaste tu contrasena?',
                                 style: TextStyle(
                                     fontSize: 30,
+                                    fontFamily: 'Poppins',
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                    color: Colors.black),
                                 // textAlign: TextAlign.center,
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 0.0,
                               ),
                               Text(
                                 'Ingresa el correo electronico asociado a tu cuenta.',
                                 style: TextStyle(
                                     // fontSize: 20,
+                                    fontFamily: 'Poppins',
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                    color: Colors.black),
                                 // textAlign: TextAlign.center,
                               ),
                               SizedBox(
@@ -86,8 +104,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               Text(
                                 'Te enviaremos un codigo de verificacion a tu correo para revisar la autentificacion.',
                                 style: TextStyle(
-                                  fontFamily: 'Raleway',
-                                  color: Colors.white,
+                                  fontFamily: 'Poppins',
+                                  color: Colors.black,
                                   // fontSize: 20,
                                 ),
                                 // textAlign: TextAlign.center,
@@ -102,32 +120,35 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             children: <Widget>[
                               Container(
                                 child: TextField(
-                                  obscureText: true,
+                                  keyboardType: TextInputType.emailAddress,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'Poppins'),
                                   decoration:
                                       // ThemeHelper().textInputDecoration(
                                       //     'Contrasena', 'Ingresa tu contrasena'),
                                       InputDecoration(
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.white54),
+                                          BorderSide(color: Colors.black),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                          width: 2.0, color: Colors.white),
+                                          width: 2.0, color: Colors.red),
                                     ),
                                     //filled: true,
                                     //hoverColor: Colors.blue.shade100,
                                     //fillColor: Colors.white,
                                     prefixIcon: Icon(
                                       Icons.email,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     ),
                                     //focusColor: Colors.blue,
                                     hintText: "Correo",
-                                    hintStyle: TextStyle(color: Colors.white),
+                                    hintStyle: TextStyle(color: Colors.black),
                                     border: UnderlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.white),
+                                          BorderSide(color: Colors.black),
                                     ),
                                   ),
                                 ),
@@ -187,7 +208,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   children: [
                                     TextSpan(
                                         text: "Recuerdas tu contrasena? ",
-                                        style: TextStyle(color: Colors.white)),
+                                        style: TextStyle(color: Colors.black)),
                                     TextSpan(
                                       text: 'Inicia Sesion',
                                       recognizer: TapGestureRecognizer()
@@ -201,7 +222,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                         },
                                       style: TextStyle(
                                           decoration: TextDecoration.underline,
-                                          color: Colors.white,
+                                          color: Colors.black,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],

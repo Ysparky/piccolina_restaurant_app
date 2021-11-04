@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:piccolina_restaurant_app/common/theme_helper.dart';
@@ -30,38 +31,48 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("#ff3333"),
+      backgroundColor: Colors.white,
       body: Container(
-        decoration: new BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-              HexColor("#ff6666"),
-              HexColor("#ff6666"),
-              HexColor("#ff3333"),
-              HexColor("#ff3333")
-            ],
-                stops: [
-              0.5,
-              0.5,
-              0.8,
-              0.8
-            ],
-                begin: FractionalOffset.topCenter,
-                end: FractionalOffset.bottomCenter)),
+        // decoration: new BoxDecoration(
+        //     gradient: LinearGradient(
+        //         colors: [
+        //       HexColor("#ff6666"),
+        //       HexColor("#ff6666"),
+        //       HexColor("#ff3333"),
+        //       HexColor("#ff3333")
+        //     ],
+        //         stops: [
+        //       0.5,
+        //       0.5,
+        //       0.8,
+        //       0.8
+        //     ],
+        //         begin: FractionalOffset.topCenter,
+        //         end: FractionalOffset.bottomCenter)),
         child: SingleChildScrollView(
-          child: Stack(
+          child: Column(
             children: [
               Container(
+                color: Colors.white,
                 height: _headerHeight,
-                child: HeaderWidget(_headerHeight, true,
-                    Icons.login_rounded), //let's create a common header widget
+                child: Stack(
+                  children: [
+                    HeaderWidget(_headerHeight, true, Icons.login_rounded),
+                    Positioned(
+                      left: 40.0,
+                      top: 50.0,
+                      child: SvgPicture.asset(
+                        'assets/icons/logo-piccolina.svg',
+                        height: 100.0,
+                        alignment: Alignment.topCenter,
+                      ),
+                    ),
+                    //let's create a common header widget
+                  ],
+                ), //let's create a common header widget
               ),
               Container(
-                child: SizedBox(
-                  height: 50,
-                ),
-              ),
-              Container(
+                //color: Colors.blue,
                 margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
                 padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                 alignment: Alignment.center,
@@ -71,72 +82,43 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       //key: _formKey,
                       child: Column(
                         children: [
-                          GestureDetector(
-                            child: Stack(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(
-                                        width: 5, color: Colors.white),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 20,
-                                        offset: const Offset(5, 5),
-                                      ),
-                                    ],
-                                  ),
-                                  child:
-                                      // SvgPicture.asset(
-                                      //     "assets/icons/logo-piccolina.svg"),
-                                      Icon(
-                                    Icons.person,
-                                    color: Colors.grey.shade300,
-                                    size: 80.0,
-                                  ),
-                                ),
-                                // Container(
-                                //   padding: EdgeInsets.fromLTRB(80, 80, 0, 0),
-                                //   child: Icon(
-                                //     Icons.add_circle,
-                                //     color: Colors.grey.shade700,
-                                //     size: 25.0,
-                                //   ),
-                                // ),
-                              ],
+                          Text(
+                            'Registra tu nueva cuenta',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: "Poppins",
                             ),
                           ),
-                          SizedBox(
-                            height: 180,
-                          ),
+                          SizedBox(height: 30.0),
                           Container(
                             child: TextField(
-                              style: TextStyle(fontFamily: 'RobotoMono'),
-                              obscureText: true,
+                              style: TextStyle(
+                                  color: Colors.black, fontFamily: 'Poppins'),
+                              //obscureText: true,
                               decoration:
                                   // ThemeHelper().textInputDecoration(
                                   //     'Contrasena', 'Ingresa tu contrasena'),
                                   InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white54),
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 2.0, color: Colors.white),
+                                  borderSide:
+                                      BorderSide(width: 2.0, color: Colors.red),
                                 ),
                                 //filled: true,
                                 //hoverColor: Colors.blue.shade100,
                                 //fillColor: Colors.white,
                                 prefixIcon: Icon(
                                   Icons.person,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                 ),
-                                focusColor: Colors.white,
+                                focusColor: Colors.black,
                                 hintText: "Nombre de usuario",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: TextStyle(
+                                    color: Colors.black, fontFamily: "Poppins"),
                                 border: UnderlineInputBorder(),
                               ),
                             ),
@@ -148,30 +130,32 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           SizedBox(height: 10.0),
                           Container(
                             child: TextField(
-                              obscureText: true,
+                              keyboardType: TextInputType.emailAddress,
+                              style: TextStyle(
+                                  color: Colors.black, fontFamily: 'Poppins'),
                               decoration:
                                   // ThemeHelper().textInputDecoration(
                                   //     'Contrasena', 'Ingresa tu contrasena'),
                                   InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white54),
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 2.0, color: Colors.white),
+                                  borderSide:
+                                      BorderSide(width: 2.0, color: Colors.red),
                                 ),
                                 //filled: true,
                                 //hoverColor: Colors.blue.shade100,
                                 //fillColor: Colors.white,
                                 prefixIcon: Icon(
                                   Icons.email,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                 ),
                                 //focusColor: Colors.blue,
                                 hintText: "Correo",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: TextStyle(color: Colors.black),
                                 border: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white),
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                               ),
                             ),
@@ -197,29 +181,31 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           Container(
                             child: TextField(
                               obscureText: true,
+                              style: TextStyle(
+                                  color: Colors.black, fontFamily: 'Poppins'),
                               decoration:
                                   // ThemeHelper().textInputDecoration(
                                   //     'Contrasena', 'Ingresa tu contrasena'),
                                   InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white54),
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 2.0, color: Colors.white),
+                                  borderSide:
+                                      BorderSide(width: 2.0, color: Colors.red),
                                 ),
                                 //filled: true,
                                 //hoverColor: Colors.blue.shade100,
                                 //fillColor: Colors.white,
                                 prefixIcon: Icon(
                                   Icons.vpn_key_rounded,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                 ),
                                 //focusColor: Colors.blue,
-                                hintText: "Contrasena",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintText: "Contraseña",
+                                hintStyle: TextStyle(color: Colors.black),
                                 border: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white),
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                               ),
                             ),
@@ -241,7 +227,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           //   ),
                           //   decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           // ),
-                          SizedBox(height: 20.0),
+                          SizedBox(height: 10.0),
                           // Container(
                           //   child: TextFormField(
                           //     obscureText: true,
@@ -256,7 +242,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           //   ),
                           //   decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           // ),
-                          SizedBox(height: 6.0),
+                          //SizedBox(height: 6.0),
                           FormField<bool>(
                             builder: (state) {
                               return Column(
@@ -274,7 +260,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                           }),
                                       Text(
                                         "Acepto todos los terminos y condiciones.",
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: 'Poppins'),
                                       ),
                                     ],
                                   ),
@@ -300,7 +288,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               }
                             },
                           ),
-                          SizedBox(height: 6.0),
+                          //SizedBox(height: 2.0),
                           Container(
                             decoration:
                                 ThemeHelper().buttonBoxDecoration(context),
@@ -313,6 +301,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   "Registrar".toUpperCase(),
                                   style: TextStyle(
                                     fontSize: 20,
+                                    fontFamily: 'Poppins',
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -328,20 +317,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               },
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          //SizedBox(height: 5.0),
                           Container(
+                            //color: Colors.white,
                             margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
                             //child: Text('Don\'t have an account? Create'),
                             // ignore: prefer_const_literals_to_create_immutables
                             child: Text.rich(TextSpan(children: [
                               TextSpan(
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'Poppins'),
                                   text: "Ya tienes cuenta? "),
-                            ])),
-                          ),
-                          Container(
-                            child: Text.rich(TextSpan(children: [
-                              //TextSpan(text: "No tienes cuenta? "),
                               TextSpan(
                                 text: 'Inicia Sesion',
                                 recognizer: TapGestureRecognizer()
@@ -353,11 +340,33 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   },
                                 style: TextStyle(
                                     decoration: TextDecoration.underline,
+                                    fontFamily: 'Poppins',
                                     fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).accentColor),
+                                    color: Colors.black),
                               ),
                             ])),
                           ),
+                          // Container(
+                          //   //color: Colors.white,
+                          //   child: Text.rich(TextSpan(children: [
+                          //     //TextSpan(text: "No tienes cuenta? "),
+                          //     TextSpan(
+                          //       text: 'Inicia Sesion',
+                          //       recognizer: TapGestureRecognizer()
+                          //         ..onTap = () {
+                          //           Navigator.push(
+                          //               context,
+                          //               MaterialPageRoute(
+                          //                   builder: (context) => LoginPage()));
+                          //         },
+                          //       style: TextStyle(
+                          //           decoration: TextDecoration.underline,
+                          //           fontFamily: 'Poppins',
+                          //           fontWeight: FontWeight.bold,
+                          //           color: Colors.black),
+                          //     ),
+                          //   ])),
+                          // ),
                         ],
                       ),
                     ),

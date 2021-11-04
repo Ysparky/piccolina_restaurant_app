@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:piccolina_restaurant_app/common/theme_helper.dart';
 import 'package:piccolina_restaurant_app/pages/widgets/header_widget.dart';
@@ -26,53 +27,72 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("#ff3333"),
+      backgroundColor: HexColor("#ffffff"),
       body: Container(
-        decoration: new BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-              HexColor("#ff6666"),
-              HexColor("#ff6666"),
-              HexColor("#ff3333"),
-              HexColor("#ff3333")
-            ],
-                stops: [
-              0.5,
-              0.5,
-              0.8,
-              0.8
-            ],
-                begin: FractionalOffset.topCenter,
-                end: FractionalOffset.bottomCenter)),
+        // decoration: new BoxDecoration(
+        //     gradient: LinearGradient(
+        //         colors: [
+        //       HexColor("#ff3333"),
+        //       HexColor("#ff6666"),
+        //       HexColor("#ff3333"),
+        //       HexColor("#ff3333")
+        //     ],
+        //         stops: [
+        //       0.1,
+        //       0.5,
+        //       0.8,
+        //       0.8
+        //     ],
+        //         begin: FractionalOffset.topCenter,
+        //         end: FractionalOffset.bottomCenter)),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 height: _headerHeight,
-                child: HeaderWidget(_headerHeight, true,
-                    Icons.login_rounded), //let's create a common header widget
+                child: Stack(
+                  children: [
+                    HeaderWidget(_headerHeight, true, Icons.login_rounded),
+                    Positioned(
+                      left: 40.0,
+                      top: 50.0,
+                      child: SvgPicture.asset(
+                        'assets/icons/logo-piccolina.svg',
+                        height: 100.0,
+                        alignment: Alignment.topCenter,
+                      ),
+                    ),
+                    //let's create a common header widget
+                  ],
+                ),
+                // child: SvgPicture.asset(
+                //   'assets/icons/logo-piccolina.svg',
+                //   height: 100.0,
+                // ),
+                //   child: HeaderWidget(_headerHeight, true,
+                //       Icons.login_rounded), //let's create a common header widget
               ),
               Container(
                 child: SizedBox(
-                  height: 50,
+                  height: 10,
                 ),
               ),
               SafeArea(
                 child: Container(
-                    //color: Colors.blue,
+                    color: Colors.white,
                     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                     margin: EdgeInsets.fromLTRB(
                         20, 10, 20, 10), // This will be the login form
                     child: Column(
                       children: [
-                        // Text(
-                        //   'Bienvenido',
-                        //   style: TextStyle(
-                        //       fontSize: 60, fontWeight: FontWeight.bold),
-                        // ),
                         Text(
                           'Inicia Sesion con tu cuenta',
-                          style: TextStyle(fontSize: 30, color: Colors.white),
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: "Poppins",
+                          ),
                         ),
                         SizedBox(height: 30.0),
                         Form(
@@ -81,30 +101,33 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Container(
                               child: TextField(
-                                style: TextStyle(fontFamily: 'RobotoMono'),
-                                obscureText: true,
+                                keyboardType: TextInputType.name,
+                                style: TextStyle(
+                                    color: Colors.black, fontFamily: 'Poppins'),
+                                //obscureText: true,
                                 decoration:
                                     // ThemeHelper().textInputDecoration(
                                     //     'Contrasena', 'Ingresa tu contrasena'),
                                     InputDecoration(
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.white54),
+                                    borderSide: BorderSide(color: Colors.black),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 2.0, color: Colors.white),
+                                        width: 2.0, color: Colors.red),
                                   ),
                                   //filled: true,
                                   //hoverColor: Colors.blue.shade100,
                                   //fillColor: Colors.white,
                                   prefixIcon: Icon(
                                     Icons.person,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   ),
-                                  focusColor: Colors.white,
+                                  focusColor: Colors.black,
                                   hintText: "Nombre de usuario",
-                                  hintStyle: TextStyle(color: Colors.white),
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: "Poppins"),
                                   border: UnderlineInputBorder(),
                                 ),
                               ),
@@ -113,31 +136,36 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(height: 30.0),
                             Container(
                               child: TextField(
+                                style: TextStyle(
+                                    color: Colors.black, fontFamily: 'Poppins'),
                                 obscureText: true,
                                 decoration:
                                     // ThemeHelper().textInputDecoration(
                                     //     'Contrasena', 'Ingresa tu contrasena'),
                                     InputDecoration(
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.white54),
+                                    borderSide: BorderSide(color: Colors.black),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 2.0, color: Colors.white),
+                                        width: 2.0, color: Colors.red),
                                   ),
                                   //filled: true,
                                   //hoverColor: Colors.blue.shade100,
                                   //fillColor: Colors.white,
                                   prefixIcon: Icon(
                                     Icons.vpn_key_rounded,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   ),
                                   //focusColor: Colors.blue,
-                                  hintText: "Contrasena",
-                                  hintStyle: TextStyle(color: Colors.white),
+                                  hintText: "Contraseña",
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: "Poppins"),
                                   border: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -157,10 +185,13 @@ class _LoginPageState extends State<LoginPage> {
                                   );
                                 },
                                 child: Text(
-                                  "Olvidaste tu contraseña?",
+                                  "¿Olvidaste tu contraseña?",
                                   style: TextStyle(
+                                    fontFamily: "NunitoSans",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   ),
                                   // border: UnderlineInputBorder(),
                                 ),
@@ -172,11 +203,12 @@ class _LoginPageState extends State<LoginPage> {
                               child: ElevatedButton(
                                 style: ThemeHelper().buttonStyle(),
                                 child: Padding(
-                                  padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                  padding: EdgeInsets.fromLTRB(75, 10, 75, 10),
                                   child: Text(
                                     'Iniciar Sesion'.toUpperCase(),
                                     style: TextStyle(
                                         fontSize: 20,
+                                        fontFamily: "Poppins",
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                   ),
@@ -195,10 +227,13 @@ class _LoginPageState extends State<LoginPage> {
                               //child: Text('Don\'t have an account? Create'),
                               child: Text.rich(TextSpan(children: [
                                 TextSpan(
-                                    style: TextStyle(color: Colors.white),
-                                    text: "No tienes cuenta? "),
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                    text: "¿No tienes cuenta? "),
                                 TextSpan(
-                                  text: 'Creala',
+                                  text: 'Registrate',
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       Navigator.push(
@@ -209,8 +244,9 @@ class _LoginPageState extends State<LoginPage> {
                                     },
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).accentColor),
+                                      color: Colors.black),
                                 ),
                               ])),
                             ),

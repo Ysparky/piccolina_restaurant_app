@@ -3,7 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:piccolina_restaurant_app/common/theme_helper.dart';
+import 'package:piccolina_restaurant_app/pages/widgets/header_widget.dart';
 
 import 'forgot_password_page.dart';
 import 'profile_page.dart';
@@ -24,19 +27,27 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Container(
-            //   height: _headerHeight,
-            //   child: HeaderWidget(_headerHeight, true,
-            //       Icons.login_rounded), //let's create a common header widget
-            // ),
             Container(
-              child: SizedBox(
-                height: 300,
-              ),
+              height: _headerHeight,
+              child: Stack(
+                children: [
+                  HeaderWidget(_headerHeight, true, Icons.login_rounded),
+                  Positioned(
+                    left: 40.0,
+                    top: 50.0,
+                    child: SvgPicture.asset(
+                      'assets/icons/logo-piccolina.svg',
+                      height: 100.0,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                  //let's create a common header widget
+                ],
+              ), //let's create a common header widget
             ),
             SafeArea(
               child: Container(
@@ -45,26 +56,19 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                       20, 10, 20, 10), // This will be the login form
                   child: Column(
                     children: [
-                      // Text(
-                      //   'Bienvenido',
-                      //   style: TextStyle(
-                      //       fontSize: 60, fontWeight: FontWeight.bold),
-                      // ),
-                      Text(
-                        'Bienvenido de nuevo!',
-                        style: TextStyle(fontSize: 30, color: Colors.white),
-                      ),
                       SizedBox(height: 30.0),
                       Text(
                         "Inicia sesion con tu cuenta",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.black,
+                            fontFamily: "Poppins"),
                       ),
                       SizedBox(height: 30.0),
                       Form(
                           //key: _formKey,
                           child: Column(
                         children: [
-                          SizedBox(height: 15.0),
                           Container(
                             margin: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
                             // ignore: deprecated_member_use
@@ -81,7 +85,11 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                       ),
-                                      child: Icon(Icons.keyboard),
+                                      child: Image.asset(
+                                          "assets/icons/google.png"),
+                                      // SvgPicture.asset(
+                                      //     "assets/icons/google.svg")
+                                      //Icon(Icons.keyboard),
                                     ),
                                     Container(
                                         padding: EdgeInsets.only(
@@ -96,6 +104,8 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                   ],
                                 )),
                           ),
+                          SizedBox(height: 10.0),
+
                           Container(
                             margin: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
                             // ignore: deprecated_member_use
@@ -112,7 +122,8 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                       ),
-                                      child: Icon(Icons.keyboard),
+                                      child: Image.asset(
+                                          "assets/icons/facebook.png"),
                                     ),
                                     Container(
                                         padding: EdgeInsets.only(
@@ -127,7 +138,7 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                   ],
                                 )),
                           ),
-                          //SizedBox(height: 15.0),
+                          SizedBox(height: 10.0),
                           Container(
                             margin: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
                             // ignore: deprecated_member_use
@@ -144,7 +155,7 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                       ),
-                                      child: Icon(Icons.keyboard),
+                                      child: Icon(Icons.email_rounded),
                                     ),
                                     Container(
                                         padding: EdgeInsets.only(
@@ -189,14 +200,18 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                             //child: Text('Don\'t have an account? Create'),
                             // ignore: prefer_const_literals_to_create_immutables
                             child: Text.rich(TextSpan(children: [
-                              TextSpan(text: "No tienes cuenta? "),
+                              TextSpan(
+                                  text: "No tienes cuenta? ",
+                                  style: TextStyle(
+                                    fontFamily: "Poppins",
+                                  )),
                             ])),
                           ),
                           Container(
                             child: Text.rich(TextSpan(children: [
                               //TextSpan(text: "No tienes cuenta? "),
                               TextSpan(
-                                text: 'Creala',
+                                text: 'Registrate',
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     Navigator.push(
@@ -206,8 +221,10 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                                 RegistrationPage()));
                                   },
                                 style: TextStyle(
+                                    fontFamily: "Poppins",
                                     fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).accentColor),
+                                    decoration: TextDecoration.underline,
+                                    color: Colors.black),
                               ),
                             ])),
                           ),
