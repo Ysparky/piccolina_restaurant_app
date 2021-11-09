@@ -33,22 +33,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        // decoration: new BoxDecoration(
-        //     gradient: LinearGradient(
-        //         colors: [
-        //       HexColor("#ff6666"),
-        //       HexColor("#ff6666"),
-        //       HexColor("#ff3333"),
-        //       HexColor("#ff3333")
-        //     ],
-        //         stops: [
-        //       0.5,
-        //       0.5,
-        //       0.8,
-        //       0.8
-        //     ],
-        //         begin: FractionalOffset.topCenter,
-        //         end: FractionalOffset.bottomCenter)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -96,11 +80,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             child: TextField(
                               style: TextStyle(
                                   color: Colors.black, fontFamily: 'Poppins'),
-                              //obscureText: true,
-                              decoration:
-                                  // ThemeHelper().textInputDecoration(
-                                  //     'Contrasena', 'Ingresa tu contrasena'),
-                                  InputDecoration(
+                              decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black),
                                 ),
@@ -108,9 +88,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   borderSide:
                                       BorderSide(width: 2.0, color: Colors.red),
                                 ),
-                                //filled: true,
-                                //hoverColor: Colors.blue.shade100,
-                                //fillColor: Colors.white,
                                 prefixIcon: Icon(
                                   Icons.person,
                                   color: Colors.black,
@@ -122,7 +99,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 border: UnderlineInputBorder(),
                               ),
                             ),
-                            //decoration:ThemeHelper().inputBoxDecorationShaddow(),
                           ),
                           SizedBox(
                             height: 10,
@@ -133,10 +109,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               keyboardType: TextInputType.emailAddress,
                               style: TextStyle(
                                   color: Colors.black, fontFamily: 'Poppins'),
-                              decoration:
-                                  // ThemeHelper().textInputDecoration(
-                                  //     'Contrasena', 'Ingresa tu contrasena'),
-                                  InputDecoration(
+                              decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black),
                                 ),
@@ -144,9 +117,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   borderSide:
                                       BorderSide(width: 2.0, color: Colors.red),
                                 ),
-                                //filled: true,
-                                //hoverColor: Colors.blue.shade100,
-                                //fillColor: Colors.white,
                                 prefixIcon: Icon(
                                   Icons.email,
                                   color: Colors.black,
@@ -159,24 +129,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                             ),
-                            //decoration:ThemeHelper().inputBoxDecorationShaddow(),
                           ),
-                          // Container(
-                          //   child: TextFormField(
-                          //     decoration: ThemeHelper().textInputDecoration(
-                          //         "Correo", "Ingresa correo electronico"),
-                          //     keyboardType: TextInputType.emailAddress,
-                          //     validator: (val) {
-                          //       if (!(val!.isEmpty) &&
-                          //           !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-                          //               .hasMatch(val)) {
-                          //         return "Ingrese una direccion de correo valida";
-                          //       }
-                          //       return null;
-                          //     },
-                          //   ),
-                          //   decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                          // ),
                           SizedBox(height: 20.0),
                           Container(
                             child: TextField(
@@ -194,9 +147,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   borderSide:
                                       BorderSide(width: 2.0, color: Colors.red),
                                 ),
-                                //filled: true,
-                                //hoverColor: Colors.blue.shade100,
-                                //fillColor: Colors.white,
                                 prefixIcon: Icon(
                                   Icons.vpn_key_rounded,
                                   color: Colors.black,
@@ -209,40 +159,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                             ),
-                            //decoration:ThemeHelper().inputBoxDecorationShaddow(),
                           ),
-                          // Container(
-                          //   child: TextFormField(
-                          //     decoration: ThemeHelper().textInputDecoration(
-                          //         "Numero de telefono",
-                          //         "Ingresa numero de telefono"),
-                          //     keyboardType: TextInputType.phone,
-                          //     validator: (val) {
-                          //       if (!(val!.isEmpty) &&
-                          //           !RegExp(r"^(\d+)*$").hasMatch(val)) {
-                          //         return "Ingresa un numero de telefono valido";
-                          //       }
-                          //       return null;
-                          //     },
-                          //   ),
-                          //   decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                          // ),
                           SizedBox(height: 10.0),
-                          // Container(
-                          //   child: TextFormField(
-                          //     obscureText: true,
-                          //     decoration: ThemeHelper().textInputDecoration(
-                          //         "Password*", "Ingresa tu contrasena"),
-                          //     validator: (val) {
-                          //       if (val!.isEmpty) {
-                          //         return "Porfavor ingresa una contrasena";
-                          //       }
-                          //       return null;
-                          //     },
-                          //   ),
-                          //   decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                          // ),
-                          //SizedBox(height: 6.0),
                           FormField<bool>(
                             builder: (state) {
                               return Column(
@@ -280,13 +198,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ],
                               );
                             },
-                            validator: (value) {
-                              if (!checkboxValue) {
-                                return 'Necesitas aceptar los terminos y condiciones!.';
-                              } else {
-                                return null;
-                              }
-                            },
+                            // validator: (value) {
+                            //   if (!checkboxValue) {
+                            //     return 'Necesitas aceptar los terminos y condiciones!.';
+                            //   } else {
+                            //     return null;
+                            //   }
+                            // },
                           ),
                           //SizedBox(height: 2.0),
                           Container(
@@ -308,12 +226,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                               onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) => ProfilePage()),
-                                      (Route<dynamic> route) => false);
-                                }
+                                //if (_formKey.currentState!.validate()) {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) => ProfilePage()),
+                                    (Route<dynamic> route) => false);
+                                //}
                               },
                             ),
                           ),
@@ -346,27 +264,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                             ])),
                           ),
-                          // Container(
-                          //   //color: Colors.white,
-                          //   child: Text.rich(TextSpan(children: [
-                          //     //TextSpan(text: "No tienes cuenta? "),
-                          //     TextSpan(
-                          //       text: 'Inicia Sesion',
-                          //       recognizer: TapGestureRecognizer()
-                          //         ..onTap = () {
-                          //           Navigator.push(
-                          //               context,
-                          //               MaterialPageRoute(
-                          //                   builder: (context) => LoginPage()));
-                          //         },
-                          //       style: TextStyle(
-                          //           decoration: TextDecoration.underline,
-                          //           fontFamily: 'Poppins',
-                          //           fontWeight: FontWeight.bold,
-                          //           color: Colors.black),
-                          //     ),
-                          //   ])),
-                          // ),
                         ],
                       ),
                     ),

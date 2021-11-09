@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:piccolina_restaurant_app/common/theme_helper.dart';
+import 'package:piccolina_restaurant_app/pages/login_page.dart';
 import 'package:piccolina_restaurant_app/pages/widgets/header_widget.dart';
 
 import 'forgot_password_page.dart';
@@ -87,9 +88,6 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                       ),
                                       child: Image.asset(
                                           "assets/icons/google.png"),
-                                      // SvgPicture.asset(
-                                      //     "assets/icons/google.svg")
-                                      //Icon(Icons.keyboard),
                                     ),
                                     Container(
                                         padding: EdgeInsets.only(
@@ -105,7 +103,6 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                 )),
                           ),
                           SizedBox(height: 10.0),
-
                           Container(
                             margin: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
                             // ignore: deprecated_member_use
@@ -145,18 +142,22 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                             child: new RaisedButton(
                                 padding: EdgeInsets.all(1.0),
                                 color: Colors.white,
-                                onPressed: () async {},
+                                onPressed: () async {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginPage()),
+                                      (Route<dynamic> route) => false);
+                                },
                                 child: new Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
                                     Container(
-                                      padding:
-                                          EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                      ),
-                                      child: Icon(Icons.email_rounded),
-                                    ),
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                        ),
+                                        child: Icon(Icons.mail_rounded)),
                                     Container(
                                         padding: EdgeInsets.only(
                                             left: 10.0, right: 10.0),
@@ -171,30 +172,6 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
                                 )),
                           ),
                           SizedBox(height: 15.0),
-                          // Container(
-                          //   decoration:
-                          //       ThemeHelper().buttonBoxDecoration(context),
-                          //   child: ElevatedButton(
-                          //     style: ThemeHelper().buttonStyle(),
-                          //     child: Padding(
-                          //       padding: EdgeInsets.fromLTRB(75, 5, 75, 5),
-                          //       child: Text(
-                          //         'Iniciar Sesion con email'.toUpperCase(),
-                          //         style: TextStyle(
-                          //             fontSize: 20,
-                          //             fontWeight: FontWeight.bold,
-                          //             color: Colors.black),
-                          //       ),
-                          //     ),
-                          //     onPressed: () {
-                          //       //After successful login we will redirect to profile page. Let's create profile page now
-                          //       Navigator.pushReplacement(
-                          //           context,
-                          //           MaterialPageRoute(
-                          //               builder: (context) => ProfilePage()));
-                          //     },
-                          //   ),
-                          // ),
                           Container(
                             margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
                             //child: Text('Don\'t have an account? Create'),
@@ -239,30 +216,3 @@ class _WelcomebackPageState extends State<WelcomebackPage> {
     );
   }
 }
-  // ThemeHelper().textInputDecoration(
-                                  //     'Nombre de usuario',
-                                  //     'Ingresa tu nombre de usuario'),
-// Container(
-//                             decoration:
-//                                 ThemeHelper().buttonBoxDecoration(context),
-//                             child: ElevatedButton(
-//                               style: ThemeHelper().buttonStyle(),
-//                               child: Padding(
-//                                 padding: EdgeInsets.fromLTRB(75, 5, 75, 5),
-//                                 child: Text(
-//                                   'Iniciar Sesion con facebook'.toUpperCase(),
-//                                   style: TextStyle(
-//                                       fontSize: 20,
-//                                       fontWeight: FontWeight.bold,
-//                                       color: Colors.black),
-//                                 ),
-//                               ),
-//                               onPressed: () {
-//                                 //After successful login we will redirect to profile page. Let's create profile page now
-//                                 Navigator.pushReplacement(
-//                                     context,
-//                                     MaterialPageRoute(
-//                                         builder: (context) => ProfilePage()));
-//                               },
-//                             ),
-//                           ),                                

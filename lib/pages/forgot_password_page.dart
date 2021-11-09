@@ -124,10 +124,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontFamily: 'Poppins'),
-                                  decoration:
-                                      // ThemeHelper().textInputDecoration(
-                                      //     'Contrasena', 'Ingresa tu contrasena'),
-                                      InputDecoration(
+                                  decoration: InputDecoration(
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.black),
@@ -136,9 +133,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                       borderSide: BorderSide(
                                           width: 2.0, color: Colors.red),
                                     ),
-                                    //filled: true,
-                                    //hoverColor: Colors.blue.shade100,
-                                    //fillColor: Colors.white,
+
                                     prefixIcon: Icon(
                                       Icons.email,
                                       color: Colors.black,
@@ -151,6 +146,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                           BorderSide(color: Colors.black),
                                     ),
                                   ),
+                                  //filled: true,
+                                  //hoverColor: Colors.blue.shade100,
+                                  //fillColor: Colors.white,
                                 ),
                                 //decoration:ThemeHelper().inputBoxDecorationShaddow(),
                               ),
@@ -180,7 +178,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   style: ThemeHelper().buttonStyle(),
                                   child: Padding(
                                     padding: const EdgeInsets.fromLTRB(
-                                        40, 10, 40, 10),
+                                        100, 10, 100, 10),
                                     child: Text(
                                       "Enviar".toUpperCase(),
                                       style: TextStyle(

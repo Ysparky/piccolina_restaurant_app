@@ -36,8 +36,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                Theme.of(context).primaryColor,
-                Theme.of(context).accentColor,
+                Colors.black,
+                Colors.blue,
               ])),
         ),
         actions: [
@@ -87,21 +87,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 1.0
               ],
                   colors: [
-                Theme.of(context).primaryColor.withOpacity(0.2),
+                Theme.of(context).primaryColor.withOpacity(0.5),
                 Theme.of(context).accentColor.withOpacity(0.5),
               ])),
           child: ListView(
             children: [
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
+                  color: Colors.black,
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     stops: [0.0, 1.0],
                     colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).accentColor,
+                      Colors.blueAccent,
+                      Colors.blue,
                     ],
                   ),
                 ),
@@ -120,12 +120,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 leading: Icon(
                   Icons.screen_lock_landscape_rounded,
                   size: _drawerIconSize,
-                  color: Theme.of(context).accentColor,
+                  color: Colors.black,
                 ),
                 title: Text(
                   'Splash Screen',
-                  style: TextStyle(
-                      fontSize: 17, color: Theme.of(context).accentColor),
+                  style: TextStyle(fontSize: 17, color: Colors.black),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -137,13 +136,11 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               ListTile(
                 leading: Icon(Icons.login_rounded,
-                    size: _drawerIconSize,
-                    color: Theme.of(context).accentColor),
+                    size: _drawerIconSize, color: Colors.black),
                 title: Text(
                   'Login Page',
-                  style: TextStyle(
-                      fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                  style:
+                      TextStyle(fontSize: _drawerFontSize, color: Colors.black),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -158,13 +155,11 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               ListTile(
                 leading: Icon(Icons.person_add_alt_1,
-                    size: _drawerIconSize,
-                    color: Theme.of(context).accentColor),
+                    size: _drawerIconSize, color: Colors.black),
                 title: Text(
                   'Registration Page',
-                  style: TextStyle(
-                      fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                  style:
+                      TextStyle(fontSize: _drawerFontSize, color: Colors.black),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -181,13 +176,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 leading: Icon(
                   Icons.password_rounded,
                   size: _drawerIconSize,
-                  color: Theme.of(context).accentColor,
+                  color: Colors.black,
                 ),
                 title: Text(
                   'Forgot Password Page',
-                  style: TextStyle(
-                      fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                  style:
+                      TextStyle(fontSize: _drawerFontSize, color: Colors.black),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -205,13 +199,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 leading: Icon(
                   Icons.verified_user_sharp,
                   size: _drawerIconSize,
-                  color: Theme.of(context).accentColor,
+                  color: Colors.black,
                 ),
                 title: Text(
                   'Verification Page',
-                  style: TextStyle(
-                      fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                  style:
+                      TextStyle(fontSize: _drawerFontSize, color: Colors.black),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -229,13 +222,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 leading: Icon(
                   Icons.logout_rounded,
                   size: _drawerIconSize,
-                  color: Theme.of(context).accentColor,
+                  color: Colors.black,
                 ),
                 title: Text(
                   'Logout',
-                  style: TextStyle(
-                      fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                  style:
+                      TextStyle(fontSize: _drawerFontSize, color: Colors.black),
                 ),
                 onTap: () {
                   SystemNavigator.pop();
@@ -282,14 +274,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 20,
                   ),
                   Text(
-                    'Mr. Donald Trump',
+                    'Mr. Giancarlo Ruiz',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Text(
-                    'Former President',
+                    'Programmer',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -304,7 +296,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               const EdgeInsets.only(left: 8.0, bottom: 4.0),
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "User Information",
+                            "Informacion de usuario",
                             style: TextStyle(
                               color: Colors.black87,
                               fontWeight: FontWeight.w500,
@@ -328,14 +320,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                           contentPadding: EdgeInsets.symmetric(
                                               horizontal: 12, vertical: 4),
                                           leading: Icon(Icons.my_location),
-                                          title: Text("Location"),
-                                          subtitle: Text("USA"),
+                                          title: Text("Ubicacion"),
+                                          subtitle: Text("PERU"),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.email),
-                                          title: Text("Email"),
+                                          title: Text("Correo"),
                                           subtitle:
-                                              Text("donaldtrump@gmail.com"),
+                                              Text("giancarloruiz@gmail.com"),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.phone),
@@ -344,9 +336,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.person),
-                                          title: Text("About Me"),
-                                          subtitle: Text(
-                                              "This is a about me link and you can khow about me in this section."),
+                                          title: Text("Sobre mi"),
+                                          subtitle: Text("Hello everyone."),
                                         ),
                                       ],
                                     ),

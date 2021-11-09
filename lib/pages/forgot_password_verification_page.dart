@@ -31,23 +31,6 @@ class _ForgotPasswordVerificationPageState
     return Scaffold(
         backgroundColor: Colors.white,
         body: Container(
-          // decoration: new BoxDecoration(
-          //     gradient: LinearGradient(
-          //         colors: [
-          //       HexColor("#ff6666"),
-          //       HexColor("#ff6666"),
-          //       HexColor("#ff3333"),
-          //       HexColor("#ff3333")
-          //     ],
-          //         stops: [
-          //       0.5,
-          //       0.5,
-          //       0.8,
-          //       0.8
-          //     ],
-          //         begin: FractionalOffset.topCenter,
-          //         end: FractionalOffset.bottomCenter)
-          //         ),
           child: SingleChildScrollView(
             child: Column(
               children: [

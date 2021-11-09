@@ -72,30 +72,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     'assets/icons/logo-piccolina.svg',
                     height: 100,
                   ),
-                  //Text("Bienvenido"),
-                  // SizedBox(
-                  //   height: 10,
-                  // ),
-                  // ClipOval(
-                  //   child: Icon(
-                  //     Icons.local_pizza_rounded,
-                  //     size: 128,
-                  //   ), //put your logo here`
-                  // ),
                 ],
               ),
             ),
-            // decoration: BoxDecoration(
-            //     shape: BoxShape.circle,
-            //     color: Colors.white,
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: Colors.black.withOpacity(0.3),
-            //         blurRadius: 2.0,
-            //         offset: Offset(5.0, 3.0),
-            //         spreadRadius: 2.0,
-            //       )
-            //     ]),
           ),
         ),
       ),

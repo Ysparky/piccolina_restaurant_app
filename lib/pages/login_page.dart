@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:piccolina_restaurant_app/common/theme_helper.dart';
+import 'package:piccolina_restaurant_app/pages/catalog/visualizar_catalogo.dart';
 import 'package:piccolina_restaurant_app/pages/widgets/header_widget.dart';
 
 import 'forgot_password_page.dart';
@@ -29,22 +30,6 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: HexColor("#ffffff"),
       body: Container(
-        // decoration: new BoxDecoration(
-        //     gradient: LinearGradient(
-        //         colors: [
-        //       HexColor("#ff3333"),
-        //       HexColor("#ff6666"),
-        //       HexColor("#ff3333"),
-        //       HexColor("#ff3333")
-        //     ],
-        //         stops: [
-        //       0.1,
-        //       0.5,
-        //       0.8,
-        //       0.8
-        //     ],
-        //         begin: FractionalOffset.topCenter,
-        //         end: FractionalOffset.bottomCenter)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -65,12 +50,6 @@ class _LoginPageState extends State<LoginPage> {
                     //let's create a common header widget
                   ],
                 ),
-                // child: SvgPicture.asset(
-                //   'assets/icons/logo-piccolina.svg',
-                //   height: 100.0,
-                // ),
-                //   child: HeaderWidget(_headerHeight, true,
-                //       Icons.login_rounded), //let's create a common header widget
               ),
               Container(
                 child: SizedBox(
@@ -104,11 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                                 keyboardType: TextInputType.name,
                                 style: TextStyle(
                                     color: Colors.black, fontFamily: 'Poppins'),
-                                //obscureText: true,
-                                decoration:
-                                    // ThemeHelper().textInputDecoration(
-                                    //     'Contrasena', 'Ingresa tu contrasena'),
-                                    InputDecoration(
+                                decoration: InputDecoration(
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.black),
                                   ),
@@ -116,9 +91,6 @@ class _LoginPageState extends State<LoginPage> {
                                     borderSide: BorderSide(
                                         width: 2.0, color: Colors.red),
                                   ),
-                                  //filled: true,
-                                  //hoverColor: Colors.blue.shade100,
-                                  //fillColor: Colors.white,
                                   prefixIcon: Icon(
                                     Icons.person,
                                     color: Colors.black,
@@ -131,7 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                                   border: UnderlineInputBorder(),
                                 ),
                               ),
-                              //decoration:ThemeHelper().inputBoxDecorationShaddow(),
                             ),
                             SizedBox(height: 30.0),
                             Container(
@@ -139,10 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                                 style: TextStyle(
                                     color: Colors.black, fontFamily: 'Poppins'),
                                 obscureText: true,
-                                decoration:
-                                    // ThemeHelper().textInputDecoration(
-                                    //     'Contrasena', 'Ingresa tu contrasena'),
-                                    InputDecoration(
+                                decoration: InputDecoration(
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.black),
                                   ),
@@ -150,14 +118,10 @@ class _LoginPageState extends State<LoginPage> {
                                     borderSide: BorderSide(
                                         width: 2.0, color: Colors.red),
                                   ),
-                                  //filled: true,
-                                  //hoverColor: Colors.blue.shade100,
-                                  //fillColor: Colors.white,
                                   prefixIcon: Icon(
                                     Icons.vpn_key_rounded,
                                     color: Colors.black,
                                   ),
-                                  //focusColor: Colors.blue,
                                   hintText: "Contraseña",
                                   hintStyle: TextStyle(
                                       color: Colors.black,
@@ -169,7 +133,6 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ),
-                              //decoration:ThemeHelper().inputBoxDecorationShaddow(),
                             ),
                             SizedBox(height: 15.0),
                             Container(
@@ -193,7 +156,6 @@ class _LoginPageState extends State<LoginPage> {
                                     decoration: TextDecoration.underline,
                                     color: Colors.black,
                                   ),
-                                  // border: UnderlineInputBorder(),
                                 ),
                               ),
                             ),
@@ -218,7 +180,8 @@ class _LoginPageState extends State<LoginPage> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ProfilePage()));
+                                          builder: (context) =>
+                                              VisualizarCatalogo()));
                                 },
                               ),
                             ),
@@ -262,6 +225,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-  // ThemeHelper().textInputDecoration(
-                                  //     'Nombre de usuario',
-                                  //     'Ingresa tu nombre de usuario'),
