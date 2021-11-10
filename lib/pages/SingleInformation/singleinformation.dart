@@ -983,8 +983,11 @@ class SingleInformationPage extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: MediaQuery.of(context).size.height / 1.08,
+            //bottom: MediaQuery.of(context).padding,
             //width: double.infinity,
-            top: 730,
+            //height: MediaQuery.of(context).copyWith(),
+            //height: double.infinity,
             left: 6.0,
             child: ElevatedButton(
               style: ButtonStyle(
