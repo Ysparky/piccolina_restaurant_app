@@ -2,6 +2,8 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:piccolina_restaurant_app/common/theme_helper.dart';
+import 'package:piccolina_restaurant_app/pages/catalog/visualizar_catalogo.dart';
 import 'package:piccolina_restaurant_app/pages/forgot_password_page.dart';
 import 'package:piccolina_restaurant_app/pages/login_page.dart';
 
@@ -13,16 +15,10 @@ class SingleInformationPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: HexColor('#ffffff'),
       body: SingleChildScrollView(
-        child: Column(
+        child: Stack(
           children: [
-            Stack(
+            Column(
               children: [
-                // Positioned(
-                //   top: 50.0,
-                //   child:
-                SizedBox(
-                  height: 130,
-                ),
                 SafeArea(
                   child: Column(
                     children: [
@@ -671,12 +667,326 @@ class SingleInformationPage extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(30, 00, 30, 00),
+                        margin: EdgeInsets.fromLTRB(00, 00, 00, 10),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Reseñas Positivas',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins',
+                                      fontSize: 20),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Text('Jose Caldas'),
+                                Text(
+                                  ' * ',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                Text(
+                                  'Julio 23, 2021',
+                                  style: TextStyle(color: Colors.grey),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'La mejor aplicacion ademas de la pizza que es\n'
+                                  'buena que es buena.',
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins', fontSize: 14),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.grey[300],
+                                ),
+                                Text('Giancarlo Ruiz'),
+                                Text(
+                                  ' * ',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                Text(
+                                  'Octubre 12, 2021',
+                                  style: TextStyle(color: Colors.grey),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Variedad de pizzas y buena atencion.',
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins', fontSize: 14),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber[400],
+                                ),
+                                Text('Eloy Herrera'),
+                                Text(
+                                  ' * ',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                Text(
+                                  'Noviembre 1, 2021',
+                                  style: TextStyle(color: Colors.grey),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Muy buena pizza con los mejores ingredientes.',
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins', fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(30, 00, 30, 00),
+                        margin: EdgeInsets.fromLTRB(00, 00, 00, 10),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Descripción',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins',
+                                      fontSize: 20),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              'La pizza de mozzarella es la más clásica entre\n'
+                              'todas las recetas de pizzas. Es la que\n'
+                              'nos gusta a la mayoría. Es una receta compuesta\n'
+                              'por una masa baja y crocante con una cubierta\n'
+                              'de salsa de tomate, mozzarella, aceitunas y\n'
+                              'orégano.',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins', fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(30, 00, 30, 00),
+                        margin: EdgeInsets.fromLTRB(00, 00, 00, 10),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Nutrición',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins',
+                                      fontSize: 20),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.all(20),
+                                    //margin: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(color: Colors.red),
+                                      color: HexColor('#ffe6e6'),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Text('320 cal'),
+                                        Text('Energia')
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(20),
+                                    //margin: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(color: Colors.red),
+                                      color: HexColor('#ffe6e6'),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Text('64 g'),
+                                        Text('Proteinas')
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(20),
+                                    //margin: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        border: Border.all(color: Colors.red),
+                                        color: HexColor('#ffe6e6')),
+                                    child: Column(
+                                      children: [Text('20 g'), Text('Grasa')],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                //),
               ],
             ),
+            Positioned(
+              //width: double.infinity,
+              top: 730,
+              left: 6.0,
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.grey,
+                ),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Colors.red)),
+                    ),
+                    backgroundColor:
+                        MaterialStateProperty.all(HexColor("#ff3333")),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(75, 10, 75, 10),
+                    child: Text(
+                      'Agregar al carrito'.toUpperCase(),
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                  onPressed: () {
+                    //After successful login we will redirect to profile page. Let's create profile page now
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => VisualizarCatalogo()));
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),
