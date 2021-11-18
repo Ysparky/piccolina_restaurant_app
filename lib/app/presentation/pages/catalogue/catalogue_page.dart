@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/catalogue/catalogue_view_model.dart';
 import 'package:piccolina_restaurant_app/app/presentation/widgets/global_widgets.dart';
 import 'package:piccolina_restaurant_app/core/base/base_loading_overlay.dart';
+import 'package:piccolina_restaurant_app/core/routes/routes.gr.dart';
 import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 import 'package:provider/provider.dart';
 
@@ -95,7 +97,9 @@ class MenuItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: hp(1)),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          context.router.push(const ProductDetailRoute());
+        },
         padding: EdgeInsets.zero,
         color: Colors.white,
         elevation: 0,
