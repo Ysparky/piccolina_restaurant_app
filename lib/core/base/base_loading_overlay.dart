@@ -55,7 +55,7 @@ class BaseLoadingOverlay<T extends BaseViewModel> extends StatelessWidget {
           color: color,
           size: size ?? wp(15),
         );
-      default:
+      case LoadingType.wave:
         return SpinKitWave(
           color: color,
           size: size ?? wp(15),

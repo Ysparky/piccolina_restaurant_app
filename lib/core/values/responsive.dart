@@ -8,12 +8,12 @@ double screenWidth = width / devicePixelRatio;
 double screenHeight = height / devicePixelRatio;
 ui.Size screenSize = ui.Size(screenWidth, screenHeight);
 
-double wp(percentage) {
+double wp(double percentage) {
   // print('Width from $percentage: ${percentage / 100 * screenWidth}');
   return percentage / 100 * screenWidth;
 }
 
-double hp(percentage) {
+double hp(double percentage) {
   // print('Height from $percentage: ${percentage / 100 * screenHeight}');
   // print(44 * 100 / screenHeight);
   return percentage / 100 * screenHeight;

@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:piccolina_restaurant_app/core/base/base_view_model.dart';
+import 'package:piccolina_restaurant_app/core/routes/routes.gr.dart';
 import 'package:piccolina_restaurant_app/core/utils/validators.dart';
 
 class LoginViewModel extends BaseViewModel {
@@ -34,6 +36,10 @@ class LoginViewModel extends BaseViewModel {
       );
     }
   }
+
+  void toRegistration() => scaffoldKey.currentState!.context.router.popAndPush(
+        const RegistrationRoute(),
+      );
 
   void _login() {
     // setLoading(true);

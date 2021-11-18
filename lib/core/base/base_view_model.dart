@@ -11,7 +11,7 @@ class BaseViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  void setLoading(bool newValue) {
+  void setLoading({required bool newValue}) {
     _isLoading = newValue;
     if (hasListeners) {
       notifyListeners();
@@ -62,7 +62,7 @@ class BaseViewModel extends ChangeNotifier {
       behavior: SnackBarBehavior.floating,
       duration: duration,
       elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: EdgeInsets.symmetric(horizontal: wp(2), vertical: hp(2)),
     );
 
