@@ -49,7 +49,7 @@ class CataloguePageBase extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(height: hp(5)),
+                    SizedBox(height: hp(3)),
                     const CatalogueHeader(),
                     SizedBox(height: hp(3)),
                     // TODO(kldas): Buscador de productos
