@@ -286,9 +286,12 @@ class CatalogueHeader extends StatelessWidget {
             width: 51,
             height: 51,
             color: Colors.white,
-            child: Image.network(
-              'https://i.pinimg.com/750x/02/93/84/029384410a11c0aa8f671fcecbd8393b.jpg',
-              fit: BoxFit.cover,
+            child: GestureDetector(
+              onTap: () => context.router.push(const LoginRoute()),
+              child: Image.network(
+                'https://i.pinimg.com/750x/02/93/84/029384410a11c0aa8f671fcecbd8393b.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

@@ -88,14 +88,17 @@ class ProductDateilPageBase extends StatelessWidget {
                     SizedBox(height: hp(2)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
-                          'Pizza SMoker',
-                          style:
-                              Theme.of(context).textTheme.headline6!.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24,
-                                  ),
+                        Expanded(
+                          child: Text(
+                            'Spicy mozarella italiano pizza',
+                            style:
+                                Theme.of(context).textTheme.headline6!.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                    ),
+                          ),
                         ),
                         Text(
                           'S/. 20.99',
