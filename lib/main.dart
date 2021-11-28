@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:piccolina_restaurant_app/pages/maps/Homemaps.dart';
 
 import 'pages/splash_screen.dart';
 
@@ -37,7 +38,8 @@ class LoginUiApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade100,
         primarySwatch: Colors.grey,
       ),
-      home: SplashScreen(title: 'Flutter Login'),
+      //home: SplashScreen(title: 'Flutter Login'),
+      home: SplashScreen(title: 'Home'),
     );
   }
 }
