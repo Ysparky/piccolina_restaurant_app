@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:piccolina_restaurant_app/pages/checkout/checkOutPage.dart';
 import 'package:piccolina_restaurant_app/pages/maps/Homemaps.dart';
 
 import 'pages/splash_screen.dart';
@@ -40,7 +41,7 @@ class LoginUiApp extends StatelessWidget {
       ),
       //home: SplashScreen(title: 'Flutter Login'),
       //home: SplashScreen(title: 'Home'),
-      home: HomeMapsPage(),
+      home: CheckOutPage(),
     );
   }
 }

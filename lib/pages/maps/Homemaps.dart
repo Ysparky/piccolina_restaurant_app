@@ -34,8 +34,9 @@ class HomeMapsPage extends StatelessWidget {
               ),
             ),
             DraggableScrollableSheet(
+              expand: true,
               initialChildSize: 0.2,
-              maxChildSize: 0.8,
+              maxChildSize: 0.90,
               minChildSize: 0.2,
               builder: (context, scrollController) {
                 return SingleChildScrollView(
@@ -54,6 +55,16 @@ class HomeMapsPage extends StatelessWidget {
                           margin: EdgeInsets.fromLTRB(00, 10, 00, 10),
                           child: Column(
                             children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment:
