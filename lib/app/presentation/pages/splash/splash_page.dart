@@ -6,7 +6,7 @@ import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 import 'package:provider/provider.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  const SplashPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SplashPage extends StatelessWidget {
 }
 
 class SplashPageBase extends StatelessWidget {
-  const SplashPageBase({Key? key}) : super(key: key);
+  const SplashPageBase({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

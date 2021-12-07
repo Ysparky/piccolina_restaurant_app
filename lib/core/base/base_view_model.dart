@@ -11,7 +11,7 @@ class BaseViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  void setLoading({required bool newValue}) {
+  void setLoading({bool newValue}) {
     _isLoading = newValue;
     if (hasListeners) {
       notifyListeners();
@@ -43,7 +43,7 @@ class BaseViewModel extends ChangeNotifier {
         break;
     }
 
-    final context = scaffoldKey.currentContext!;
+    final context = scaffoldKey.currentContext;
     final snackBarAction = SnackBarAction(
       label: actionLabel,
       textColor: textColor,
@@ -54,8 +54,7 @@ class BaseViewModel extends ChangeNotifier {
     final snackBar = SnackBar(
       content: Text(
         message,
-        style:
-            Theme.of(context).textTheme.bodyText2!.copyWith(color: textColor),
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color: textColor),
       ),
       action: snackBarAction,
       backgroundColor: backgroundColor,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BaseScrollView extends StatelessWidget {
-  const BaseScrollView({Key? key, required this.child}) : super(key: key);
+  const BaseScrollView({Key key, this.child}) : super(key: key);
 
   final Widget child;
 

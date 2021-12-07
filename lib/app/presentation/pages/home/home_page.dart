@@ -4,14 +4,14 @@ import 'package:piccolina_restaurant_app/core/routes/routes.gr.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [
-        OrderRoute(),
         CatalogueRoute(),
+        ShoppingCartRoute(),
         FavoritesRoute(),
       ],
       extendBodyBehindAppBar: true,

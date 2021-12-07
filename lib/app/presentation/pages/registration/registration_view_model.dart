@@ -17,5 +17,5 @@ class RegistrationViewModel extends BaseViewModel {
   GlobalKey<FormState> get registrationKey => _registrationKey;
 
   void toLogin() =>
-      scaffoldKey.currentState!.context.router.popAndPush(const LoginRoute());
+      scaffoldKey.currentState.context.router.popAndPush(const LoginRoute());
 }

@@ -11,11 +11,11 @@
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 
-import '../../app/presentation/pages/catalogue/catalogue_page.dart' as _i7;
+import '../../app/presentation/pages/cart/cart_page.dart' as _i7;
+import '../../app/presentation/pages/catalogue/catalogue_page.dart' as _i6;
 import '../../app/presentation/pages/favorites/favorites_page.dart' as _i8;
 import '../../app/presentation/pages/home/home_page.dart' as _i2;
 import '../../app/presentation/pages/login/login_page.dart' as _i4;
-import '../../app/presentation/pages/order/order_page.dart' as _i6;
 import '../../app/presentation/pages/product-detail/product_detail_page.dart'
     as _i3;
 import '../../app/presentation/pages/registration/registration_page.dart'
@@ -48,13 +48,13 @@ class AppRouter extends _i9.RootStackRouter {
       return _i9.MaterialPageX<void>(
           routeData: routeData, child: const _i5.RegistrationPage());
     },
-    OrderRoute.name: (routeData) {
-      return _i9.MaterialPageX<void>(
-          routeData: routeData, child: const _i6.OrderPage());
-    },
     CatalogueRoute.name: (routeData) {
       return _i9.MaterialPageX<void>(
-          routeData: routeData, child: const _i7.CataloguePage());
+          routeData: routeData, child: const _i6.CataloguePage());
+    },
+    ShoppingCartRoute.name: (routeData) {
+      return _i9.MaterialPageX<void>(
+          routeData: routeData, child: const _i7.ShoppingCartPage());
     },
     FavoritesRoute.name: (routeData) {
       return _i9.MaterialPageX<void>(
@@ -71,10 +71,10 @@ class AppRouter extends _i9.RootStackRouter {
               parent: HomeRoute.name,
               redirectTo: 'catalogue',
               fullMatch: true),
-          _i9.RouteConfig(OrderRoute.name,
-              path: 'orders', parent: HomeRoute.name),
           _i9.RouteConfig(CatalogueRoute.name,
               path: 'catalogue', parent: HomeRoute.name),
+          _i9.RouteConfig(ShoppingCartRoute.name,
+              path: 'shopping-cart', parent: HomeRoute.name),
           _i9.RouteConfig(FavoritesRoute.name,
               path: 'favorites', parent: HomeRoute.name)
         ]),
@@ -120,18 +120,18 @@ class RegistrationRoute extends _i9.PageRouteInfo<void> {
   static const String name = 'RegistrationRoute';
 }
 
-/// generated route for [_i6.OrderPage]
-class OrderRoute extends _i9.PageRouteInfo<void> {
-  const OrderRoute() : super(name, path: 'orders');
-
-  static const String name = 'OrderRoute';
-}
-
-/// generated route for [_i7.CataloguePage]
+/// generated route for [_i6.CataloguePage]
 class CatalogueRoute extends _i9.PageRouteInfo<void> {
   const CatalogueRoute() : super(name, path: 'catalogue');
 
   static const String name = 'CatalogueRoute';
+}
+
+/// generated route for [_i7.ShoppingCartPage]
+class ShoppingCartRoute extends _i9.PageRouteInfo<void> {
+  const ShoppingCartRoute() : super(name, path: 'shopping-cart');
+
+  static const String name = 'ShoppingCartRoute';
 }
 
 /// generated route for [_i8.FavoritesPage]

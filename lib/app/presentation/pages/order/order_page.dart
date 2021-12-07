@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 
 class OrderPage extends StatelessWidget {
-  const OrderPage({Key? key}) : super(key: key);
+  const OrderPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class OrderPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: wp(8)),
                 child: Text(
                   'Pedidos',
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                  style: Theme.of(context).textTheme.headline6.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                       ),
@@ -60,7 +60,7 @@ class OrderPage extends StatelessWidget {
                                 'En Cocina',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline6!
+                                    .headline6
                                     .copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -85,7 +85,7 @@ class OrderPage extends StatelessWidget {
                                       'Repartidor',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyText1!
+                                          .bodyText1
                                           .copyWith(
                                             fontSize: 12,
                                           ),
@@ -94,7 +94,7 @@ class OrderPage extends StatelessWidget {
                                       'Giancarlo Ruiz',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyText1!
+                                          .bodyText1
                                           .copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 12,
@@ -112,7 +112,7 @@ class OrderPage extends StatelessWidget {
                                       'Fecha',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyText1!
+                                          .bodyText1
                                           .copyWith(
                                             fontSize: 12,
                                           ),
@@ -121,7 +121,7 @@ class OrderPage extends StatelessWidget {
                                       '18 de noviembre, 03:09 PM',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyText1!
+                                          .bodyText1
                                           .copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 12,
@@ -148,7 +148,7 @@ class OrderPage extends StatelessWidget {
 
 class OrderStatusRow extends StatelessWidget {
   const OrderStatusRow({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -178,7 +178,7 @@ class OrderStatusRow extends StatelessWidget {
             ),
             child: Text(
               'En Delivery (2)',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              style: Theme.of(context).textTheme.bodyText1.copyWith(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
@@ -201,7 +201,7 @@ class OrderStatusRow extends StatelessWidget {
             ),
             child: Text(
               'Completados',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              style: Theme.of(context).textTheme.bodyText1.copyWith(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     color: const Color(0xFFC0493F),

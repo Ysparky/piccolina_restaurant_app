@@ -9,8 +9,8 @@ enum LoadingType { wave, pulse }
 
 class BaseLoadingOverlay<T extends BaseViewModel> extends StatelessWidget {
   const BaseLoadingOverlay({
-    Key? key,
-    required this.child,
+    Key key,
+    @required this.child,
     this.loadingType = LoadingType.wave,
     this.color = BaseColors.primaryColor,
     this.size,
@@ -19,7 +19,7 @@ class BaseLoadingOverlay<T extends BaseViewModel> extends StatelessWidget {
   final Widget child;
   final LoadingType loadingType;
   final Color color;
-  final double? size;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +49,14 @@ class BaseLoadingOverlay<T extends BaseViewModel> extends StatelessWidget {
   }
 
   Widget _buildSpinKit() {
-    switch (loadingType) {
-      case LoadingType.pulse:
-        return SpinKitPulse(
-          color: color,
-          size: size ?? wp(15),
-        );
-      case LoadingType.wave:
-        return SpinKitWave(
-          color: color,
-          size: size ?? wp(15),
-        );
-    }
+    return loadingType == LoadingType.pulse
+        ? SpinKitPulse(
+            color: color,
+            size: size ?? wp(15),
+          )
+        : SpinKitWave(
+            color: color,
+            size: size ?? wp(15),
+          );
   }
 }

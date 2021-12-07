@@ -1,14 +1,12 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/catalogue/catalogue_view_model.dart';
 import 'package:piccolina_restaurant_app/app/presentation/widgets/global_widgets.dart';
 import 'package:piccolina_restaurant_app/core/base/base_loading_overlay.dart';
-import 'package:piccolina_restaurant_app/core/routes/routes.gr.dart';
 import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 import 'package:provider/provider.dart';
 
 class CataloguePage extends StatelessWidget {
-  const CataloguePage({Key? key}) : super(key: key);
+  const CataloguePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class CataloguePage extends StatelessWidget {
 }
 
 class CataloguePageBase extends StatelessWidget {
-  const CataloguePageBase({Key? key}) : super(key: key);
+  const CataloguePageBase({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +28,12 @@ class CataloguePageBase extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFFFFF5F3), Color(0xFFFFEFEF)],
+          colors: [
+            Color(0xFFFDFBF9),
+            Color(0xFFFFF3ED),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
       ),
       child: Scaffold(
@@ -40,45 +41,23 @@ class CataloguePageBase extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: BaseScrollView(
-            child: Container(
-              constraints: BoxConstraints(
-                minHeight: hp(100) -
-                    kBottomNavigationBarHeight -
-                    MediaQuery.of(context).padding.top,
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: wp(8)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(height: hp(3)),
-                    const CatalogueHeader(),
-                    SizedBox(height: hp(3)),
-                    // TODO(kldas): Buscador de productos
-                    const CategoriesMenuWidget(),
-                    SizedBox(height: hp(3)),
-                    Text(
-                      'Popular',
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                    ),
-                    SizedBox(height: hp(2)),
-                    Column(
-                      children: const [
-                        MenuItem(),
-                        MenuItem(),
-                        MenuItem(),
-                        MenuItem(),
-                        MenuItem(),
-                        MenuItem(),
-                      ],
-                    ),
-                    SizedBox(height: hp(10))
-                  ],
-                ),
-              ),
+            child: Column(
+              children: [
+                const HeaderHome(),
+                const HorizontalCategoryList(),
+                SizedBox(height: hp(2)),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+                const CatalogueProductItem(),
+              ],
             ),
           ),
         ),
@@ -87,163 +66,23 @@ class CataloguePageBase extends StatelessWidget {
   }
 }
 
-class MenuItem extends StatelessWidget {
-  const MenuItem({
-    Key? key,
+class HeaderHome extends StatelessWidget {
+  const HeaderHome({
+    Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: hp(1)),
-      child: MaterialButton(
-        onPressed: () {
-          context.router.push(const ProductDetailRoute());
-        },
-        padding: EdgeInsets.zero,
-        color: Colors.white,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Container(
-          height: hp(13),
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(
-            horizontal: wp(3),
-            vertical: hp(1),
-          ),
-          child: Row(
-            children: [
-              SizedBox(
-                width: wp(30),
-                height: hp(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    'https://assets.dominos.com.mx/dev/webOptimized/especialidad/CF/CF.png',
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-              ),
-              SizedBox(width: wp(3)),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      'Spicy mozarella italiano pizza',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'S/.18.99',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18,
-                                  ),
-                        ),
-                        Text(
-                          '4 min',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1!
-                              .copyWith(fontSize: 12),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CategoriesMenuWidget extends StatelessWidget {
-  const CategoriesMenuWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: wp(5),
-        vertical: hp(1),
-      ),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFF3131),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
+    return SizedBox(
+      height: hp(10),
+      child: Row(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Categorías',
-                style: Theme.of(context).textTheme.headline6!.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Ver más   >',
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                      ),
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: hp(10),
-            child: ListView.builder(
-              itemCount: 5,
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: wp(1),
-                ),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.local_pizza_rounded,
-                        color: Colors.white,
-                      ),
-                      SizedBox(height: hp(1)),
-                      Text(
-                        'Pizzas',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              color: Colors.white,
-                              fontSize: 12,
-                            ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+          Expanded(
+            child: Stack(
+              children: const [
+                Center(child: CurrentLocationHeader()),
+                UserAvatar(),
+              ],
             ),
           ),
         ],
@@ -252,50 +91,213 @@ class CategoriesMenuWidget extends StatelessWidget {
   }
 }
 
-class CatalogueHeader extends StatelessWidget {
-  const CatalogueHeader({
-    Key? key,
+class UserAvatar extends StatelessWidget {
+  const UserAvatar({
+    Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Padding(
+        padding: EdgeInsets.only(right: wp(5)),
+        child: const CircleAvatar(
+          backgroundImage: NetworkImage(
+            'https://i.pinimg.com/750x/02/93/84/029384410a11c0aa8f671fcecbd8393b.jpg',
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CurrentLocationHeader extends StatelessWidget {
+  const CurrentLocationHeader({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        SizedBox(height: hp(1)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Home',
-              style: Theme.of(context).textTheme.headline6!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
+              'Ubicación Actual',
+              style: Theme.of(context).textTheme.bodyText1.copyWith(
+                    color: const Color(0xFF556574),
+                    fontSize: 16,
                   ),
             ),
-            Text(
-              'Bienvenido, Giancarlo!',
-              style: Theme.of(context).textTheme.headline6!.copyWith(
-                    color: Colors.black.withOpacity(0.6),
-                    fontSize: 14,
-                  ),
+            SizedBox(width: wp(1)),
+            MaterialButton(
+              onPressed: () {},
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              padding: EdgeInsets.zero,
+              shape: const CircleBorder(),
+              minWidth: wp(5),
+              child: const Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: Color(0xFF556574),
+                size: 18,
+              ),
             ),
           ],
         ),
-        const Spacer(),
-        ClipOval(
-          child: Container(
-            width: 51,
-            height: 51,
-            color: Colors.white,
-            child: GestureDetector(
-              onTap: () => context.router.push(const LoginRoute()),
-              child: Image.network(
-                'https://i.pinimg.com/750x/02/93/84/029384410a11c0aa8f671fcecbd8393b.jpg',
-                fit: BoxFit.cover,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.location_on_outlined,
+              color: Color(0xFF556574),
+              size: 18,
+            ),
+            Text(
+              'Comas, Lima',
+              style: Theme.of(context).textTheme.bodyText1.copyWith(
+                    color: const Color(0xFF556574),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class CatalogueProductItem extends StatelessWidget {
+  const CatalogueProductItem({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final _vm = Provider.of<CatalogueViewModel>(context);
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: wp(5), vertical: hp(1)),
+      child: MaterialButton(
+        onPressed: _vm.toDetail,
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(vertical: hp(1), horizontal: wp(2)),
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Image.network(
+                    'https://pizza2go.online/wp-content/uploads/2020/06/pepperoni.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
               ),
+              SizedBox(width: wp(2)),
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(height: hp(2)),
+                    Text(
+                      'Pepperoni',
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                    ),
+                    const Text('Aceituna, Lechuga'),
+                    SizedBox(height: hp(0.5)),
+                    const Text(
+                      r'$ 9.99',
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    MaterialButton(
+                      onPressed: () {},
+                      padding: EdgeInsets.zero,
+                      color: const Color(0xFFFFA001),
+                      textColor: Colors.white,
+                      shape: const CircleBorder(),
+                      child: const Icon(Icons.add),
+                    ),
+                    const Text('5 min'),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HorizontalCategoryList extends StatelessWidget {
+  const HorizontalCategoryList({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: hp(5.5),
+      width: double.infinity,
+      margin: EdgeInsets.only(top: hp(1)),
+      child: ListView.builder(
+        itemCount: 5,
+        padding: EdgeInsets.only(left: wp(3), top: wp(2)),
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (_, __) => const CategoryChip(),
+      ),
+    );
+  }
+}
+
+class CategoryChip extends StatelessWidget {
+  const CategoryChip({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: wp(2)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: MaterialButton(
+          onPressed: () {},
+          color: const Color(0xFFFFA001),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Center(
+            child: Text(
+              'Pizzas',
+              style: Theme.of(context).textTheme.bodyText1.copyWith(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

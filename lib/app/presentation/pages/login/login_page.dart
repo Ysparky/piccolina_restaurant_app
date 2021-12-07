@@ -6,7 +6,7 @@ import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginPageBase extends StatelessWidget {
-  const LoginPageBase({Key? key}) : super(key: key);
+  const LoginPageBase({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

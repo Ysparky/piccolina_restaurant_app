@@ -15,17 +15,17 @@ class LoginViewModel extends BaseViewModel {
   TextEditingController get passwordController => _passwordController;
   GlobalKey<FormState> get loginKey => _loginKey;
 
-  String? emailValidator(String? value) => value!.isEmpty
+  String emailValidator(String value) => value.isEmpty
       ? 'El correo no puede estar vacío'
       : !isValidEmail(value)
           ? 'Ingrese un correo con formato válido'
           : null;
 
-  String? passwordValidator(String? value) =>
-      value!.isNotEmpty ? null : 'La contraseña no puede estar vacía';
+  String passwordValidator(String value) =>
+      value.isNotEmpty ? null : 'La contraseña no puede estar vacía';
 
   void validate() {
-    final _isValid = _loginKey.currentState!.validate();
+    final _isValid = _loginKey.currentState.validate();
     if (_isValid) {
       _login();
     } else {
@@ -37,7 +37,7 @@ class LoginViewModel extends BaseViewModel {
     }
   }
 
-  void toRegistration() => scaffoldKey.currentState!.context.router.popAndPush(
+  void toRegistration() => scaffoldKey.currentState.context.router.popAndPush(
         const RegistrationRoute(),
       );
 
@@ -50,7 +50,7 @@ class LoginViewModel extends BaseViewModel {
     //   await ExtendedNavigator.root.push(Routes.roleSelectorPage);
     // } else {
     //   showSnackBar(
-    //     response.message ?? 'Correo y/o contraseña incorrectos',
+    //     response.message ? 'Correo y/o contraseña incorrectos',
     //     type: SnackBarType.secondary,
     //   );
     // }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    Key? key,
-    required this.icon,
-    required this.hintText,
+    Key key,
+    @required this.icon,
+    @required this.hintText,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
     this.obscureText = false,
@@ -15,14 +15,14 @@ class CustomTextFormField extends StatelessWidget {
   }) : super(key: key);
 
   final AutovalidateMode autovalidateMode;
-  final TextEditingController? controller;
+  final TextEditingController controller;
   final IconData icon;
   final String hintText;
   final TextInputType keyboardType;
   final bool obscureText;
-  final void Function()? onEditingComplete;
+  final void Function() onEditingComplete;
   final TextInputAction textInputAction;
-  final String? Function(String?)? validator;
+  final String Function(String) validator;
 
   @override
   Widget build(BuildContext context) {

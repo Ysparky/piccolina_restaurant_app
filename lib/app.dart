@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:piccolina_restaurant_app/core/routes/routes.gr.dart';
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  MyApp({Key key}) : super(key: key);
 
   final _appRouter = AppRouter();
 

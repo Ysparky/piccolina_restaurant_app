@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 
 class PresentationHeaderWidget extends StatelessWidget {
-  const PresentationHeaderWidget({Key? key}) : super(key: key);
+  const PresentationHeaderWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
