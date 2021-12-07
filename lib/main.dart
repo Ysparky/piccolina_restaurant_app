@@ -4,5 +4,5 @@ import 'package:piccolina_restaurant_app/core/di/injector.dart';
 
 void main() {
   setupInjection();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
