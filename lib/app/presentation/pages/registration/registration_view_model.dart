@@ -16,6 +16,5 @@ class RegistrationViewModel extends BaseViewModel {
   TextEditingController get passwordController => _passwordController;
   GlobalKey<FormState> get registrationKey => _registrationKey;
 
-  void toLogin() =>
-      scaffoldKey.currentState.context.router.popAndPush(const LoginRoute());
+  void toLogin() => ExtendedNavigator.root.popAndPush(Routes.loginPage);
 }

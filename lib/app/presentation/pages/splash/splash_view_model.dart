@@ -20,7 +20,7 @@ class SplashViewModel extends BaseViewModel {
 
   Future<void> toHome() async {
     await Future<void>.delayed(const Duration(seconds: 2), () {
-      scaffoldKey.currentContext.router.popAndPush(const HomeRoute());
+      ExtendedNavigator.root.popAndPush(Routes.homePage);
     });
   }
 }

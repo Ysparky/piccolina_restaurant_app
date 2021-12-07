@@ -37,9 +37,8 @@ class LoginViewModel extends BaseViewModel {
     }
   }
 
-  void toRegistration() => scaffoldKey.currentState.context.router.popAndPush(
-        const RegistrationRoute(),
-      );
+  void toRegistration() =>
+      ExtendedNavigator.root.popAndPush(Routes.registrationPage);
 
   void _login() {
     // setLoading(true);

@@ -15,10 +15,9 @@ class CatalogueViewModel extends BaseViewModel {
 
   Stream<ApiResponse<List<Products>>> get products => productService.products;
 
-  void toLogin() => scaffoldKey.currentContext.router.push(const LoginRoute());
+  void toLogin() => ExtendedNavigator.root.push(Routes.loginPage);
 
-  void toDetail() =>
-      scaffoldKey.currentContext.router.push(const ProductDetailRoute());
+  void toDetail() => ExtendedNavigator.root.push(Routes.productDetailPage);
 
   Future<void> getProducts() async {
     setLoading(newValue: true);
