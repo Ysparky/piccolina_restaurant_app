@@ -39,7 +39,8 @@ class LoginUiApp extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       //home: SplashScreen(title: 'Flutter Login'),
-      home: SplashScreen(title: 'Home'),
+      //home: SplashScreen(title: 'Home'),
+      home: HomeMapsPage(),
     );
   }
 }
