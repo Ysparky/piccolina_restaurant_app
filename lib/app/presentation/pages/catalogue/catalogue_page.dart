@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/catalogue/catalogue_view_model.dart';
 import 'package:piccolina_restaurant_app/app/presentation/widgets/global_widgets.dart';
 import 'package:piccolina_restaurant_app/core/base/base_loading_overlay.dart';
+import 'package:piccolina_restaurant_app/core/models/categories.dart';
+import 'package:piccolina_restaurant_app/core/models/products.dart';
 import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 import 'package:provider/provider.dart';
 
@@ -40,25 +42,31 @@ class CataloguePageBase extends StatelessWidget {
         key: _vm.scaffoldKey,
         backgroundColor: Colors.transparent,
         body: SafeArea(
-          child: BaseScrollView(
-            child: Column(
-              children: [
-                const HeaderHome(),
-                const HorizontalCategoryList(),
-                SizedBox(height: hp(2)),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-                const CatalogueProductItem(),
-              ],
-            ),
+          child: Column(
+            children: [
+              const HeaderHome(),
+              const HorizontalCategoryList(),
+              SizedBox(height: hp(2)),
+              Expanded(
+                child: StreamBuilder(
+                  stream: _vm.products,
+                  builder: (context, AsyncSnapshot<List<Products>> snapshot) {
+                    if (snapshot.hasData) {
+                      final products = snapshot.data;
+                      return ListView.builder(
+                        itemCount: products.length,
+                        physics: BouncingScrollPhysics(),
+                        itemBuilder: (_, index) => CatalogueProductItem(
+                          product: products[index],
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -173,7 +181,10 @@ class CurrentLocationHeader extends StatelessWidget {
 class CatalogueProductItem extends StatelessWidget {
   const CatalogueProductItem({
     Key key,
+    @required this.product,
   }) : super(key: key);
+
+  final Products product;
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +192,7 @@ class CatalogueProductItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: wp(5), vertical: hp(1)),
       child: MaterialButton(
-        onPressed: _vm.toDetail,
+        onPressed: () => _vm.toDetail(product),
         color: Colors.white,
         padding: EdgeInsets.symmetric(vertical: hp(1), horizontal: wp(2)),
         elevation: 5,
@@ -195,36 +206,40 @@ class CatalogueProductItem extends StatelessWidget {
                 flex: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(5),
-                  child: Image.network(
-                    'https://pizza2go.online/wp-content/uploads/2020/06/pepperoni.png',
-                    fit: BoxFit.contain,
+                  child: Hero(
+                    tag: product.imageUrl,
+                    child: Image.network(
+                      product.imageUrl,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
               SizedBox(width: wp(2)),
               Expanded(
-                flex: 5,
+                flex: 6,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SizedBox(height: hp(2)),
                     Text(
-                      'Pepperoni',
+                      product.name,
                       style: Theme.of(context).textTheme.bodyText1.copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
                     ),
-                    const Text('Aceituna, Lechuga'),
+                    Text(_vm.getIngredients(product.ingredients)),
                     SizedBox(height: hp(0.5)),
-                    const Text(
-                      r'$ 9.99',
+                    Text(
+                      'S/. ${product.price.toString()}',
                     ),
                   ],
                 ),
               ),
               Expanded(
+                flex: 2,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -236,7 +251,7 @@ class CatalogueProductItem extends StatelessWidget {
                       shape: const CircleBorder(),
                       child: const Icon(Icons.add),
                     ),
-                    const Text('5 min'),
+                    Text(product.cookingTime),
                   ],
                 ),
               )
@@ -255,16 +270,29 @@ class HorizontalCategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _vm = Provider.of<CatalogueViewModel>(context);
     return Container(
       height: hp(5.5),
       width: double.infinity,
       margin: EdgeInsets.only(top: hp(1)),
-      child: ListView.builder(
-        itemCount: 5,
-        padding: EdgeInsets.only(left: wp(3), top: wp(2)),
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (_, __) => const CategoryChip(),
+      child: StreamBuilder(
+        stream: _vm.categories,
+        builder: (_, AsyncSnapshot<List<Categories>> snapshot) {
+          if (snapshot.hasData) {
+            final categories = snapshot.data;
+            return ListView.builder(
+              itemCount: categories.length,
+              padding: EdgeInsets.only(left: wp(3), top: wp(2)),
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (_, index) => CategoryChip(
+                category: categories[index],
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }
@@ -273,7 +301,10 @@ class HorizontalCategoryList extends StatelessWidget {
 class CategoryChip extends StatelessWidget {
   const CategoryChip({
     Key key,
+    @required this.category,
   }) : super(key: key);
+
+  final Categories category;
 
   @override
   Widget build(BuildContext context) {
@@ -289,7 +320,7 @@ class CategoryChip extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              'Pizzas',
+              category.name,
               style: Theme.of(context).textTheme.bodyText1.copyWith(
                     color: Colors.white,
                     fontSize: 16,

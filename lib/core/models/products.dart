@@ -2,40 +2,27 @@
 //
 //     final products = productsFromJson(jsonString);
 
-// import 'package:meta/meta.dart';
-// import 'dart:convert';
+import 'package:meta/meta.dart';
+import 'dart:convert';
 
-// List<Products> productsFromJson(String str) =>
-//     List<Products>.from(json.decode(str).map((x) => Products.fromJson(x)));
-// List<Products>.from(json.decode(str).map((x) => Products.fromJson(x)));
+List<Products> productsFromJson(String str) =>
+    List<Products>.from(json.decode(str).map((x) => Products.fromJson(x)));
 
-// String productsToJson(List<Products> data) =>
-//     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String productsToJson(List<Products> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Products {
   Products({
-    this.id,
-    this.name,
-    this.description,
-    this.price,
-    this.imageUrl,
-    this.cookingTime,
-    this.rating,
-    this.flag,
-    // this.ingredients,
+    @required this.id,
+    @required this.name,
+    @required this.description,
+    @required this.price,
+    @required this.imageUrl,
+    @required this.cookingTime,
+    @required this.rating,
+    @required this.flag,
+    @required this.ingredients,
   });
-
-  factory Products.fromJson(Map<String, dynamic> json) => Products(
-        id: int.parse(json['id'].toString()),
-        name: json['name'].toString(),
-        description: json['description'].toString(),
-        price: json['price'].toString(),
-        imageUrl: json['imageUrl'].toString(),
-        cookingTime: json['cookingTime'].toString(),
-        rating: json['rating'].toString(),
-        flag: json['flag'] == 'true',
-        // ingredients: List<dynamic>.from(json['ingredients'].map((x) => x)),
-      );
 
   final int id;
   final String name;
@@ -45,7 +32,7 @@ class Products {
   final String cookingTime;
   final String rating;
   final bool flag;
-  // final List<dynamic> ingredients;
+  final List<Ingredient> ingredients;
 
   Products copyWith({
     int id,
@@ -56,7 +43,7 @@ class Products {
     String cookingTime,
     String rating,
     bool flag,
-    // List<dynamic> ingredients,
+    List<Ingredient> ingredients,
   }) =>
       Products(
         id: id ?? this.id,
@@ -67,18 +54,72 @@ class Products {
         cookingTime: cookingTime ?? this.cookingTime,
         rating: rating ?? this.rating,
         flag: flag ?? this.flag,
-        // ingredients: ingredients ?? this.ingredients,
+        ingredients: ingredients ?? this.ingredients,
       );
 
-  // Map<String, dynamic> toJson() => {
-  //       'id': id,
-  //       'name': name,
-  //       'description': description,
-  //       'price': price,
-  //       'imageUrl': imageUrl,
-  //       'cookingTime': cookingTime,
-  //       'rating': rating,
-  //       'flag': flag,
-  //       // 'ingredients': List<dynamic>.from(ingredients.map((x) => x)),
-  //     };
+  factory Products.fromJson(Map<String, dynamic> json) => Products(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        price: json["price"],
+        imageUrl: json["imageUrl"],
+        cookingTime: json["cookingTime"],
+        rating: json["rating"],
+        flag: json["flag"],
+        ingredients: List<Ingredient>.from(
+            json["ingredients"].map((x) => Ingredient.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "description": description,
+        "price": price,
+        "imageUrl": imageUrl,
+        "cookingTime": cookingTime,
+        "rating": rating,
+        "flag": flag,
+        "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
+      };
+}
+
+class Ingredient {
+  Ingredient({
+    @required this.id,
+    @required this.name,
+    @required this.price,
+    @required this.flag,
+  });
+
+  final int id;
+  final String name;
+  final String price;
+  final bool flag;
+
+  Ingredient copyWith({
+    int id,
+    String name,
+    String price,
+    bool flag,
+  }) =>
+      Ingredient(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        price: price ?? this.price,
+        flag: flag ?? this.flag,
+      );
+
+  factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+        flag: json["flag"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "price": price,
+        "flag": flag,
+      };
 }

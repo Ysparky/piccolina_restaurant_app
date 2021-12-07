@@ -17,6 +17,7 @@ import '../../app/presentation/pages/login/login_page.dart';
 import '../../app/presentation/pages/product-detail/product_detail_page.dart';
 import '../../app/presentation/pages/registration/registration_page.dart';
 import '../../app/presentation/pages/splash/splash_page.dart';
+import '../models/products.dart';
 
 class Routes {
   static const String splashPage = '/';
@@ -63,8 +64,12 @@ class AppRouter extends RouterBase {
       );
     },
     ProductDetailPage: (data) {
+      final args = data.getArgs<ProductDetailPageArguments>(nullOk: false);
       return MaterialPageRoute<void>(
-        builder: (context) => const ProductDetailPage(),
+        builder: (context) => ProductDetailPage(
+          key: args.key,
+          product: args.product,
+        ),
         settings: data,
       );
     },
@@ -124,4 +129,15 @@ class HomePageRouter extends RouterBase {
       );
     },
   };
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// ProductDetailPage arguments holder class
+class ProductDetailPageArguments {
+  final Key key;
+  final Products product;
+  ProductDetailPageArguments({this.key, @required this.product});
 }

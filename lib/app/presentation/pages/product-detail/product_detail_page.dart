@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/product-detail/product_detail_view_model.dart';
 import 'package:piccolina_restaurant_app/core/base/base_loading_overlay.dart';
+import 'package:piccolina_restaurant_app/core/models/products.dart';
 import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({Key key}) : super(key: key);
+  const ProductDetailPage({Key key, @required this.product}) : super(key: key);
+
+  final Products product;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ProductDetailViewModel(),
+      create: (_) => ProductDetailViewModel(product: product),
       child: const BaseLoadingOverlay<ProductDetailViewModel>(
         child: ProductDetailPageBase(),
       ),
@@ -63,7 +66,7 @@ class ProductDetailPageBase extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const ProductImageWidget(),
+            ProductImageWidget(imageUrl: _vm.product.imageUrl),
             SizedBox(height: hp(2)),
             const QuantityPicker(),
             const SizePicker(),
@@ -79,7 +82,7 @@ class ProductDetailPageBase extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Pepperonni',
+                              _vm.product.name,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6
@@ -90,13 +93,13 @@ class ProductDetailPageBase extends StatelessWidget {
                             ),
                             SizedBox(height: hp(1)),
                             Text(
-                              'Pepperoni, durazno, aceituna',
+                              _vm.getIngredients(_vm.product.ingredients),
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],
                         ),
                       ),
-                      const PricingRow(),
+                      PricingRow(price: _vm.product.price),
                     ],
                   ),
                   SizedBox(height: hp(1)),
@@ -110,7 +113,7 @@ class ProductDetailPageBase extends StatelessWidget {
                           ),
                           SizedBox(width: wp(2)),
                           Text(
-                            '4.9',
+                            _vm.product.rating,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1
@@ -127,7 +130,7 @@ class ProductDetailPageBase extends StatelessWidget {
                           ),
                           SizedBox(width: wp(2)),
                           Text(
-                            '2-4 min',
+                            _vm.product.cookingTime,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1
@@ -183,7 +186,10 @@ class ProductDetailPageBase extends StatelessWidget {
 class PricingRow extends StatelessWidget {
   const PricingRow({
     Key key,
+    this.price,
   }) : super(key: key);
+
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +205,7 @@ class PricingRow extends StatelessWidget {
         ),
         SizedBox(width: wp(1)),
         Text(
-          '20.99',
+          price ?? '20.99',
           style: Theme.of(context).textTheme.headline6.copyWith(
                 color: const Color(0xFF556574),
                 fontWeight: FontWeight.bold,
@@ -214,15 +220,21 @@ class PricingRow extends StatelessWidget {
 class ProductImageWidget extends StatelessWidget {
   const ProductImageWidget({
     Key key,
+    @required this.imageUrl,
   }) : super(key: key);
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: wp(20)),
-      child: Image.network(
-        'https://pizza2go.online/wp-content/uploads/2020/06/pepperoni.png',
-        fit: BoxFit.contain,
+      child: Hero(
+        tag: imageUrl,
+        child: Image.network(
+          imageUrl,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }
