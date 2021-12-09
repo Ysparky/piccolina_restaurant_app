@@ -6,6 +6,7 @@ import 'package:piccolina_restaurant_app/app/presentation/pages/registration/reg
 import 'package:piccolina_restaurant_app/core/services/auth_service.dart';
 import 'package:piccolina_restaurant_app/core/services/category_service.dart';
 import 'package:piccolina_restaurant_app/core/services/order_service.dart';
+import 'package:piccolina_restaurant_app/core/services/payment_service.dart';
 import 'package:piccolina_restaurant_app/core/services/product_service.dart';
 
 final inject = GetIt.I;
@@ -18,5 +19,6 @@ void setupInjection() {
     ..registerLazySingleton(() => AuthService())
     ..registerLazySingleton(() => CategoryService())
     ..registerLazySingleton(() => OrderService())
-    ..registerLazySingleton(() => ProductService());
+    ..registerLazySingleton(() => ProductService())
+    ..registerLazySingleton(() => PaymentService());
 }

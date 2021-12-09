@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/product-detail/product_detail_page.dart';
@@ -8,20 +10,26 @@ import 'package:piccolina_restaurant_app/core/models/orders.dart';
 import 'package:piccolina_restaurant_app/core/models/products.dart';
 import 'package:piccolina_restaurant_app/core/routes/routes.gr.dart';
 import 'package:piccolina_restaurant_app/core/services/order_service.dart';
+import 'package:piccolina_restaurant_app/core/services/payment_service.dart';
 import 'package:piccolina_restaurant_app/core/utils/shared_prefs.dart';
 import 'package:piccolina_restaurant_app/core/values/responsive.dart';
+import 'package:stripe_payment/stripe_payment.dart';
 
 class ShoppingCartViewModel extends BaseViewModel {
   ShoppingCartViewModel();
 
   final orderService = inject<OrderService>();
+  final _paymentService = inject<PaymentService>();
+
   final _prefs = SharedPrefs();
+
+  final currency = 'PEN';
 
   Orders get order => orderService.order.value;
 
   void checkout() {
     // _show = true;
-    _showModalBottomSheet();
+    showPaymentMethodModal(scaffoldKey.currentContext);
     notifyListeners();
   }
 
@@ -110,7 +118,6 @@ class ShoppingCartViewModel extends BaseViewModel {
       );
     } else {
       final created = await orderService.createOrder(order);
-      ExtendedNavigator.root.pop();
       if (created) {
         orderService.order.add(null);
         notifyListeners();
@@ -287,6 +294,82 @@ class ShoppingCartViewModel extends BaseViewModel {
                     ),
                   ),
                   SizedBox(height: hp(5)),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _newCardPayment() async {
+    ExtendedNavigator.root.pop();
+    print('requesting data');
+    try {
+      final paymentMethod = await StripePayment.paymentRequestWithCardForm(
+        CardFormPaymentRequest(),
+      );
+      setLoading(true);
+      await _paymentService.payWithNewCard(
+        order.totalPrice,
+        currency,
+        paymentMethod,
+      );
+      await _createOrder();
+      setLoading(false);
+    } catch (e) {
+      print('Error en intento: ${e.toString()}');
+      showSnackBar('El intento de pago ha sido cancelado');
+    }
+  }
+
+  void _nativePayment() async {
+    await _paymentService.nativePay(order.totalPrice, currency);
+    showSnackBar('El pago ha sido realizado correctamente');
+  }
+
+  void showPaymentMethodModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              child: Wrap(
+                children: [
+                  ListTile(
+                    leading: Image.asset(
+                      'assets/img/icons8-parte-trasera-de-tarjeta-bancaria-40.png',
+                      scale: 1.5,
+                    ),
+                    title: Text(
+                      'Tarjeta de Crédito',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Icon(Icons.navigate_next),
+                    onTap: _newCardPayment,
+                  ),
+                  ListTile(
+                    leading: Image.asset(
+                      Platform.isAndroid
+                          ? 'assets/img/icons8-logo-de-google-48.png'
+                          : 'assets/img/icons8-mac-os-48.png',
+                      scale: 1.5,
+                    ),
+                    title: Text(
+                      Platform.isAndroid ? 'Google Pay' : 'Apple Pay',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Icon(Icons.navigate_next),
+                    onTap: _nativePayment,
+                  ),
                 ],
               ),
             ),
