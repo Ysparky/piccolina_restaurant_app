@@ -11,7 +11,7 @@ class BaseViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  void setLoading({bool newValue}) {
+  void setLoading(bool newValue) {
     _isLoading = newValue;
     if (hasListeners) {
       notifyListeners();
@@ -23,7 +23,7 @@ class BaseViewModel extends ChangeNotifier {
     SnackBarType type = SnackBarType.primary,
     Duration duration = const Duration(seconds: 2),
     String actionLabel = 'Ocultar',
-    // void Function() onPressed,
+    void Function() onPressed,
   }) {
     Color backgroundColor;
     Color textColor;
@@ -47,9 +47,8 @@ class BaseViewModel extends ChangeNotifier {
     final snackBarAction = SnackBarAction(
       label: actionLabel,
       textColor: textColor,
-      onPressed: () {},
-      // onPressed: onPressed ??
-      //     () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
+      onPressed: onPressed ??
+          () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
     );
     final snackBar = SnackBar(
       content: Text(

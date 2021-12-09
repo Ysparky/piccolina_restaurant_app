@@ -69,7 +69,7 @@ class ProductDetailPageBase extends StatelessWidget {
             ProductImageWidget(imageUrl: _vm.product.imageUrl),
             SizedBox(height: hp(2)),
             const QuantityPicker(),
-            const SizePicker(),
+            // const SizePicker(),
             SizedBox(height: hp(2)),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: wp(10)),
@@ -156,7 +156,7 @@ class ProductDetailPageBase extends StatelessWidget {
             // ),
             const Spacer(),
             RawMaterialButton(
-              onPressed: () {},
+              onPressed: _vm.addToCart,
               elevation: 5,
               fillColor: const Color(0xFFF19127),
               shape: RoundedRectangleBorder(
@@ -285,11 +285,12 @@ class QuantityPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _vm = Provider.of<ProductDetailViewModel>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MaterialButton(
-          onPressed: () {},
+          onPressed: _vm.remove,
           padding: EdgeInsets.zero,
           color: const Color(0xFFFFA001),
           textColor: Colors.white,
@@ -297,14 +298,14 @@ class QuantityPicker extends StatelessWidget {
           child: const Icon(Icons.remove),
         ),
         Text(
-          '3',
+          _vm.quantity.toString(),
           style: Theme.of(context).textTheme.bodyText1.copyWith(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
         ),
         MaterialButton(
-          onPressed: () {},
+          onPressed: _vm.add,
           padding: EdgeInsets.zero,
           color: const Color(0xFFFFA001),
           textColor: Colors.white,

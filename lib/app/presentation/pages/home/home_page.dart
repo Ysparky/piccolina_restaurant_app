@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/cart/cart_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/catalogue/catalogue_page.dart';
+import 'package:piccolina_restaurant_app/app/presentation/pages/favorites/favorites_page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex;
+  PageController _pageController;
+
+  @override
+  void initState() {
+    _currentIndex = 0;
+    _pageController =
+        PageController(initialPage: _currentIndex, viewportFraction: 1.0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +35,30 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.red,
       body: SizedBox.expand(
         child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() => _currentIndex = index);
+          },
           children: const [
             CataloguePage(),
             ShoppingCartPage(),
-            // ProfilePage(),
+            FavoritesPage(),
           ],
         ),
       ),
       bottomNavigationBar: SalomonBottomBar(
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white,
+        currentIndex: _currentIndex,
+        duration: const Duration(milliseconds: 500),
+        onTap: (index) {
+          setState(() => _currentIndex = index);
+          _pageController.animateToPage(
+            index,
+            curve: Curves.easeInOutQuad,
+            duration: Duration(milliseconds: 500),
+          );
+        },
         items: [
           SalomonBottomBarItem(
             icon: const Icon(Icons.home_outlined),

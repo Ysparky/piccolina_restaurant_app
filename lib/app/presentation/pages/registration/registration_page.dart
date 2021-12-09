@@ -38,6 +38,8 @@ class RegistrationPageBase extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: wp(8)),
               child: Form(
+                key: _vm.registrationKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
                     CustomTextFormField(
@@ -55,6 +57,7 @@ class RegistrationPageBase extends StatelessWidget {
                       keyboardType: TextInputType.emailAddress,
                       onEditingComplete: _node.nextFocus,
                       textInputAction: TextInputAction.next,
+                      validator: _vm.emailValidator,
                     ),
                     SizedBox(height: hp(3)),
                     CustomTextFormField(
@@ -62,10 +65,11 @@ class RegistrationPageBase extends StatelessWidget {
                       hintText: 'Contraseña',
                       controller: _vm.passwordController,
                       obscureText: true,
+                      validator: _vm.passwordValidator,
                     ),
                     SizedBox(height: hp(3)),
                     CustomRoundedButton(
-                      onPressed: () {},
+                      onPressed: _vm.validate,
                       text: 'Crear Cuenta',
                     ),
                     SizedBox(height: hp(7)),

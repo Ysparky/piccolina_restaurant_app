@@ -2,22 +2,31 @@ import 'package:auto_route/auto_route.dart';
 import 'package:piccolina_restaurant_app/core/base/base_view_model.dart';
 import 'package:piccolina_restaurant_app/core/di/injector.dart';
 import 'package:piccolina_restaurant_app/core/models/categories.dart';
+import 'package:piccolina_restaurant_app/core/models/login_response.dart';
 import 'package:piccolina_restaurant_app/core/models/products.dart';
 import 'package:piccolina_restaurant_app/core/routes/routes.gr.dart';
+import 'package:piccolina_restaurant_app/core/services/auth_service.dart';
 import 'package:piccolina_restaurant_app/core/services/category_service.dart';
 import 'package:piccolina_restaurant_app/core/services/product_service.dart';
 
 class CatalogueViewModel extends BaseViewModel {
   CatalogueViewModel() {
-    getCategories();
-    getProducts();
+    if (categoryService.categories.value == null) getCategories();
+    if (productService.products.value == null) getProducts();
+    authService.loadSession();
   }
 
   final productService = inject<ProductService>();
   final categoryService = inject<CategoryService>();
+  final authService = inject<AuthService>();
 
   Stream<List<Products>> get products => productService.products;
   Stream<List<Categories>> get categories => categoryService.categories;
+  LoginResponse get session => authService.userSession?.value;
+
+  String get imageUrl =>
+      session?.imageUrl ??
+      'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
 
   void toLogin() => ExtendedNavigator.root.push(Routes.loginPage);
 
@@ -27,16 +36,16 @@ class CatalogueViewModel extends BaseViewModel {
       );
 
   Future<void> getCategories() async {
-    setLoading(newValue: true);
+    setLoading(true);
     await categoryService.getCategories();
-    setLoading(newValue: false);
+    setLoading(false);
     notifyListeners();
   }
 
   Future<void> getProducts() async {
-    setLoading(newValue: true);
+    setLoading(true);
     await productService.getProducts();
-    setLoading(newValue: false);
+    setLoading(false);
     notifyListeners();
   }
 

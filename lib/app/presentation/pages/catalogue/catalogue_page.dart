@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/catalogue/catalogue_view_model.dart';
-import 'package:piccolina_restaurant_app/app/presentation/widgets/global_widgets.dart';
 import 'package:piccolina_restaurant_app/core/base/base_loading_overlay.dart';
 import 'package:piccolina_restaurant_app/core/models/categories.dart';
 import 'package:piccolina_restaurant_app/core/models/products.dart';
@@ -54,7 +53,7 @@ class CataloguePageBase extends StatelessWidget {
                     if (snapshot.hasData) {
                       final products = snapshot.data;
                       return ListView.builder(
-                        itemCount: products.length,
+                        itemCount: products?.length ?? 0,
                         physics: BouncingScrollPhysics(),
                         itemBuilder: (_, index) => CatalogueProductItem(
                           product: products[index],
@@ -106,14 +105,13 @@ class UserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _vm = Provider.of<CatalogueViewModel>(context);
     return Align(
       alignment: Alignment.centerRight,
       child: Padding(
         padding: EdgeInsets.only(right: wp(5)),
-        child: const CircleAvatar(
-          backgroundImage: NetworkImage(
-            'https://i.pinimg.com/750x/02/93/84/029384410a11c0aa8f671fcecbd8393b.jpg',
-          ),
+        child: CircleAvatar(
+          backgroundImage: NetworkImage(_vm.imageUrl),
         ),
       ),
     );
@@ -281,7 +279,7 @@ class HorizontalCategoryList extends StatelessWidget {
           if (snapshot.hasData) {
             final categories = snapshot.data;
             return ListView.builder(
-              itemCount: categories.length,
+              itemCount: categories?.length ?? 0,
               padding: EdgeInsets.only(left: wp(3), top: wp(2)),
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),

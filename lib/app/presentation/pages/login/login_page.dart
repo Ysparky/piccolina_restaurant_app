@@ -60,7 +60,7 @@ class LoginPageBase extends StatelessWidget {
                     SizedBox(height: hp(5)),
                     CustomRoundedButton(
                       text: 'Iniciar Sesión',
-                      onPressed: _vm.toRegistration,
+                      onPressed: _vm.validate,
                     ),
                     SizedBox(height: hp(7)),
                     Text(
