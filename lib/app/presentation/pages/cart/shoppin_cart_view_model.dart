@@ -113,6 +113,7 @@ class ShoppingCartViewModel extends BaseViewModel {
       ExtendedNavigator.root.pop();
       if (created) {
         orderService.order.add(null);
+        notifyListeners();
         showSnackBar('El restaurante ha tomado tu pedido!');
       } else {
         showSnackBar('Ocurrió un error a la hora de realizar el pedido.');

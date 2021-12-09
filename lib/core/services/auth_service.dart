@@ -46,6 +46,11 @@ class AuthService {
     }
   }
 
+  void logout() {
+    _prefs.removeAuthSession();
+    userSession.add(null);
+  }
+
   Future<LoginResponse> requestLogin(String email, String password) async {
     try {
       final data = {'email': '$email', 'password': '$password'};
