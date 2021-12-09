@@ -66,8 +66,10 @@ class Products {
         cookingTime: json["cookingTime"],
         rating: json["rating"],
         flag: json["flag"],
-        ingredients: List<Ingredient>.from(
-            json["ingredients"].map((x) => Ingredient.fromJson(x))),
+        ingredients: json["ingredients"] != null
+            ? List<Ingredient>.from(
+                json["ingredients"].map((x) => Ingredient.fromJson(x)))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {

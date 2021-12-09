@@ -136,7 +136,7 @@ class UserProfileColumn extends StatelessWidget {
                 children: [
                   OptionTile(
                     icon: Icons.shopping_basket_outlined,
-                    onTap: () {},
+                    onTap: _vm.toOrders,
                     text: 'Mis Pedidos',
                   ),
                   OptionTile(

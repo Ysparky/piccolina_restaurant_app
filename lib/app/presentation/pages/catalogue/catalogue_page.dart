@@ -242,7 +242,7 @@ class CatalogueProductItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     MaterialButton(
-                      onPressed: () {},
+                      onPressed: () => _vm.addToCart(product),
                       padding: EdgeInsets.zero,
                       color: const Color(0xFFFFA001),
                       textColor: Colors.white,

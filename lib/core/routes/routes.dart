@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/cart/cart_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/catalogue/catalogue_page.dart';
+import 'package:piccolina_restaurant_app/app/presentation/pages/order/order_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/profile/profile_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/home/home_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/login/login_page.dart';
@@ -23,7 +24,8 @@ import 'package:piccolina_restaurant_app/app/presentation/pages/splash/splash_pa
     ),
     AutoRoute<void>(path: '/product-detail', page: ProductDetailPage),
     AutoRoute<void>(path: '/login-page', page: LoginPage),
-    AutoRoute<void>(path: '/registration-page', page: RegistrationPage)
+    AutoRoute<void>(path: '/registration-page', page: RegistrationPage),
+    AutoRoute<void>(path: '/order-page', page: OrderPage)
   ],
 )
 class $AppRouter {}

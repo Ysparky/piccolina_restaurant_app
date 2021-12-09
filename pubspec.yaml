@@ -36,6 +36,7 @@ dependencies:
   flutter_svg:
   get_it:
   google_fonts:
+  intl: ^0.17.0
   provider:
   rxdart:
   salomon_bottom_bar:

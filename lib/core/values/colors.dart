@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 abstract class BaseColors {
-  static const primaryColor = Color(0xff5A81FB); // principal-blue
+  static const primaryColor = Color(0xffFEA50B); // principal-blue
   static const filledBlueColor = Color(0xff91AAFA); // blue-input-off
   static const filledColor = Color(0xffF0F2F8); // background-app
   static const textColor = Color(0xff2C3852); // grey 2

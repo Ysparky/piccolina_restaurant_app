@@ -11,10 +11,11 @@ import 'package:flutter/material.dart';
 
 import '../../app/presentation/pages/cart/cart_page.dart';
 import '../../app/presentation/pages/catalogue/catalogue_page.dart';
-import '../../app/presentation/pages/profile/profile_page.dart';
 import '../../app/presentation/pages/home/home_page.dart';
 import '../../app/presentation/pages/login/login_page.dart';
+import '../../app/presentation/pages/order/order_page.dart';
 import '../../app/presentation/pages/product-detail/product_detail_page.dart';
+import '../../app/presentation/pages/profile/profile_page.dart';
 import '../../app/presentation/pages/registration/registration_page.dart';
 import '../../app/presentation/pages/splash/splash_page.dart';
 import '../models/products.dart';
@@ -25,12 +26,14 @@ class Routes {
   static const String productDetailPage = '/product-detail';
   static const String loginPage = '/login-page';
   static const String registrationPage = '/registration-page';
+  static const String orderPage = '/order-page';
   static const all = <String>{
     splashPage,
     homePage,
     productDetailPage,
     loginPage,
     registrationPage,
+    orderPage,
   };
 }
 
@@ -47,6 +50,7 @@ class AppRouter extends RouterBase {
     RouteDef(Routes.productDetailPage, page: ProductDetailPage),
     RouteDef(Routes.loginPage, page: LoginPage),
     RouteDef(Routes.registrationPage, page: RegistrationPage),
+    RouteDef(Routes.orderPage, page: OrderPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -85,17 +89,23 @@ class AppRouter extends RouterBase {
         settings: data,
       );
     },
+    OrderPage: (data) {
+      return MaterialPageRoute<void>(
+        builder: (context) => const OrderPage(),
+        settings: data,
+      );
+    },
   };
 }
 
 class HomePageRoutes {
   static const String cataloguePage = 'catalogue';
   static const String shoppingCartPage = 'shopping-cart';
-  static const String favoritesPage = 'favorites';
+  static const String profilePage = 'favorites';
   static const all = <String>{
     cataloguePage,
     shoppingCartPage,
-    favoritesPage,
+    profilePage,
   };
 }
 
@@ -105,7 +115,7 @@ class HomePageRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(HomePageRoutes.cataloguePage, page: CataloguePage),
     RouteDef(HomePageRoutes.shoppingCartPage, page: ShoppingCartPage),
-    RouteDef(HomePageRoutes.favoritesPage, page: ProfilePage),
+    RouteDef(HomePageRoutes.profilePage, page: ProfilePage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;

@@ -3,10 +3,12 @@ import 'package:piccolina_restaurant_app/core/base/base_view_model.dart';
 import 'package:piccolina_restaurant_app/core/di/injector.dart';
 import 'package:piccolina_restaurant_app/core/models/categories.dart';
 import 'package:piccolina_restaurant_app/core/models/login_response.dart';
+import 'package:piccolina_restaurant_app/core/models/orders.dart';
 import 'package:piccolina_restaurant_app/core/models/products.dart';
 import 'package:piccolina_restaurant_app/core/routes/routes.gr.dart';
 import 'package:piccolina_restaurant_app/core/services/auth_service.dart';
 import 'package:piccolina_restaurant_app/core/services/category_service.dart';
+import 'package:piccolina_restaurant_app/core/services/order_service.dart';
 import 'package:piccolina_restaurant_app/core/services/product_service.dart';
 
 class CatalogueViewModel extends BaseViewModel {
@@ -19,6 +21,7 @@ class CatalogueViewModel extends BaseViewModel {
   final productService = inject<ProductService>();
   final categoryService = inject<CategoryService>();
   final authService = inject<AuthService>();
+  final orderService = inject<OrderService>();
 
   Stream<List<Products>> get products => productService.products;
   Stream<List<Categories>> get categories => categoryService.categories;
@@ -60,5 +63,68 @@ class CatalogueViewModel extends BaseViewModel {
     }
 
     return ing;
+  }
+
+  void addToCart(Products product) {
+    final quantity = 1;
+    if (orderService.order.value != null) {
+      // existing order case
+      // validate if exists
+      final order = orderService.order.value;
+      final idx =
+          order.items.indexWhere((element) => element.product.id == product.id);
+      if (idx != -1) {
+        // exists
+        final item = order.items[idx];
+        final productPrice = quantity * double.parse(product.price);
+        final totalProductPrice = productPrice + double.parse(item.totalPrice);
+        final totalPriceAsString = totalProductPrice.toStringAsFixed(2);
+        order.items[idx] = Item(
+          quantity: item.quantity + quantity,
+          totalPrice: totalPriceAsString,
+          product: product,
+        );
+        final totalOrderPrice = double.parse(order.totalPrice) + productPrice;
+        orderService.order.add(
+          order.copyWith(
+            items: order.items,
+            totalPrice: totalOrderPrice.toStringAsFixed(2),
+          ),
+        );
+      } else {
+        // does not exists
+        final order = orderService.order.value;
+        final totalPrice = quantity * double.parse(product.price);
+        final totalPriceAsString = totalPrice.toStringAsFixed(2);
+        final newItem = Item(
+          quantity: quantity,
+          totalPrice: totalPriceAsString,
+          product: product,
+        );
+        order.items.add(newItem);
+        final orderTotalPrice = (double.parse(order.totalPrice) + totalPrice);
+        orderService.order.add(
+          order.copyWith(
+            items: order.items,
+            totalPrice: orderTotalPrice.toStringAsFixed(2),
+          ),
+        );
+      }
+    } else {
+      // create new order
+      final totalPrice = quantity * double.parse(product.price);
+      final totalPriceAsString = totalPrice.toStringAsFixed(2);
+      final newItem = Item(
+        quantity: quantity,
+        totalPrice: totalPriceAsString,
+        product: product,
+      );
+      final order = new Orders(
+        totalPrice: totalPriceAsString,
+        items: [newItem],
+      );
+      orderService.order.add(order);
+    }
+    showSnackBar('$quantity ${product.name} agregada al carrito');
   }
 }

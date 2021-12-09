@@ -22,6 +22,8 @@ class ProfileVIewModel extends BaseViewModel {
 
   void toLogin() => ExtendedNavigator.root.push(Routes.loginPage);
 
+  void toOrders() => ExtendedNavigator.root.push(Routes.orderPage);
+
   void logout() {
     authService.logout();
     notifyListeners();

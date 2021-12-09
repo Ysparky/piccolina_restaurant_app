@@ -62,7 +62,6 @@ class ProductDetailViewModel extends BaseViewModel {
           product: product,
         );
         final totalOrderPrice = double.parse(order.totalPrice) + productPrice;
-        print(totalOrderPrice);
         orderService.order.add(
           order.copyWith(
             items: order.items,
