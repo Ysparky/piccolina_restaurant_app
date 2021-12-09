@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:piccolina_restaurant_app/app/presentation/pages/favorites/favorites_view_model.dart';
+import 'package:piccolina_restaurant_app/app/presentation/pages/profile/profile_view_model.dart';
 import 'package:piccolina_restaurant_app/core/base/base_loading_overlay.dart';
 import 'package:piccolina_restaurant_app/core/models/login_response.dart';
 import 'package:piccolina_restaurant_app/core/values/responsive.dart';
 import 'package:provider/provider.dart';
 
-class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({Key key}) : super(key: key);
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ProfileVIewModel(),
       child: const BaseLoadingOverlay<ProfileVIewModel>(
-        child: FavoritesPageBase(),
+        child: ProfilePageBase(),
       ),
     );
   }
 }
 
-class FavoritesPageBase extends StatelessWidget {
-  const FavoritesPageBase({Key key}) : super(key: key);
+class ProfilePageBase extends StatelessWidget {
+  const ProfilePageBase({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

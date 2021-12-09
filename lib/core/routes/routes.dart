@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/cart/cart_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/catalogue/catalogue_page.dart';
-import 'package:piccolina_restaurant_app/app/presentation/pages/favorites/favorites_page.dart';
+import 'package:piccolina_restaurant_app/app/presentation/pages/profile/profile_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/home/home_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/login/login_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/product-detail/product_detail_page.dart';
@@ -18,7 +18,7 @@ import 'package:piccolina_restaurant_app/app/presentation/pages/splash/splash_pa
       children: [
         AutoRoute<void>(path: 'catalogue', page: CataloguePage, initial: true),
         AutoRoute<void>(path: 'shopping-cart', page: ShoppingCartPage),
-        AutoRoute<void>(path: 'favorites', page: FavoritesPage),
+        AutoRoute<void>(path: 'favorites', page: ProfilePage),
       ],
     ),
     AutoRoute<void>(path: '/product-detail', page: ProductDetailPage),

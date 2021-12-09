@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/presentation/pages/cart/cart_page.dart';
 import '../../app/presentation/pages/catalogue/catalogue_page.dart';
-import '../../app/presentation/pages/favorites/favorites_page.dart';
+import '../../app/presentation/pages/profile/profile_page.dart';
 import '../../app/presentation/pages/home/home_page.dart';
 import '../../app/presentation/pages/login/login_page.dart';
 import '../../app/presentation/pages/product-detail/product_detail_page.dart';
@@ -105,7 +105,7 @@ class HomePageRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(HomePageRoutes.cataloguePage, page: CataloguePage),
     RouteDef(HomePageRoutes.shoppingCartPage, page: ShoppingCartPage),
-    RouteDef(HomePageRoutes.favoritesPage, page: FavoritesPage),
+    RouteDef(HomePageRoutes.favoritesPage, page: ProfilePage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -122,9 +122,9 @@ class HomePageRouter extends RouterBase {
         settings: data,
       );
     },
-    FavoritesPage: (data) {
+    ProfilePage: (data) {
       return MaterialPageRoute<void>(
-        builder: (context) => const FavoritesPage(),
+        builder: (context) => const ProfilePage(),
         settings: data,
       );
     },

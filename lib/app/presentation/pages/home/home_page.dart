@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/cart/cart_page.dart';
 import 'package:piccolina_restaurant_app/app/presentation/pages/catalogue/catalogue_page.dart';
-import 'package:piccolina_restaurant_app/app/presentation/pages/favorites/favorites_page.dart';
+import 'package:piccolina_restaurant_app/app/presentation/pages/profile/profile_page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           children: const [
             CataloguePage(),
             ShoppingCartPage(),
-            FavoritesPage(),
+            ProfilePage(),
           ],
         ),
       ),
